@@ -1,0 +1,97 @@
+package br.com.encontreoferta;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class Promocao {
+
+    int idPromocao;
+    int idVendedor;
+    String titulo;
+    String descricao;
+    BigDecimal valor;
+    String imagem;
+    int quantidade;
+    Date tempo;
+
+    public Promocao() {
+    }
+
+    public Promocao(
+            int idPromocao, int idVendedor, String titulo, String descricao,
+            BigDecimal valor, String imagem, int quantidade, Date tempo
+    ) {
+        this.idPromocao = idPromocao;
+        this.idVendedor = idVendedor;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.imagem = imagem;
+        this.quantidade = quantidade;
+        this.tempo = tempo;
+    }
+
+    public int getIdPromocao() {
+        return idPromocao;
+    }
+
+    public int getIdVendedor() {
+        return idVendedor;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public Date getTempo() {
+        return tempo;
+    }
+
+    public void setIdPromocao(int idPromocao) {
+        this.idPromocao = idPromocao;
+    }
+
+    public void setIdVendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public void setTempo(Date tempo) {
+        this.tempo = tempo;
+    }
+}
