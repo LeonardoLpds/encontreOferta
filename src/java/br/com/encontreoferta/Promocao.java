@@ -6,7 +6,7 @@ import java.util.Date;
 public class Promocao {
 
     int idPromocao;
-    int idVendedor;
+    int cnpj;
     String titulo;
     String descricao;
     BigDecimal valor;
@@ -18,11 +18,11 @@ public class Promocao {
     }
 
     public Promocao(
-            int idPromocao, int idVendedor, String titulo, String descricao,
+            int idPromocao, int cnpj, String titulo, String descricao,
             BigDecimal valor, String imagem, int quantidade, Date tempo
     ) {
         this.idPromocao = idPromocao;
-        this.idVendedor = idVendedor;
+        this.cnpj = cnpj;
         this.titulo = titulo;
         this.descricao = descricao;
         this.valor = valor;
@@ -35,8 +35,8 @@ public class Promocao {
         return idPromocao;
     }
 
-    public int getIdVendedor() {
-        return idVendedor;
+    public int getCnpj() {
+        return cnpj;
     }
 
     public String getTitulo() {
@@ -67,7 +67,7 @@ public class Promocao {
         this.idPromocao = idPromocao;
     }
 
-    public void setIdVendedor(int idVendedor) {
+    public void setCnpj(int idVendedor) {
         this.idVendedor = idVendedor;
     }
 
