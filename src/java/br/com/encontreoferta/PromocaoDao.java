@@ -20,7 +20,7 @@ public class PromocaoDao {
         try {
             resultado.next();
             Promocao promocao = new Promocao(
-                    id, resultado.getInt("idVendedor"),
+                    id, resultado.getInt("cnpj"),
                     resultado.getString("titulo"), resultado.getString("descricao"),
                     resultado.getBigDecimal("valor"), resultado.getString("imagem"),
                     resultado.getInt("quantidade"), resultado.getDate("tempo")
@@ -40,7 +40,7 @@ public class PromocaoDao {
             List<Promocao> lista = new ArrayList<>();
             while (resultado.next()) {
                 Promocao promocao = new Promocao(
-                        resultado.getInt("id"), resultado.getInt("idVendedor"),
+                        resultado.getInt("id"), resultado.getInt("cnpj"),
                         resultado.getString("titulo"), resultado.getString("descricao"),
                         resultado.getBigDecimal("valor"), resultado.getString("imagem"),
                         resultado.getInt("quantidade"), resultado.getDate("tempo")
@@ -60,9 +60,9 @@ public class PromocaoDao {
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return conexao.executar(String.format(
-                "Insert into promocao(idVendedor, titulo, descricao, valor, "
+                "Insert into promocao(cnpj, titulo, descricao, valor, "
                 + "imagem, quantidade, tempo) values(%d, '%s', '%s', %d, '%s', %d, '%s')",
-                promocao.getIdVendedor(), promocao.getTitulo(), promocao.getDescricao(),
+                promocao.getCnpj(), promocao.getTitulo(), promocao.getDescricao(),
                 promocao.getValor(), promocao.getImagem(), promocao.getQuantidade(),
                 formato.format(promocao.getTempo())
         ));
@@ -75,10 +75,10 @@ public class PromocaoDao {
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return conexao.executar(String.format(
-                "Update promocao set idVendedor = %d, titulo = '%s', descricao = '%s', "
+                "Update promocao set cnpj = %d, titulo = '%s', descricao = '%s', "
                 + "valor = %d, imagem = '%s', quantidade = %d, tempo = '%s'"
                 + "where id = %d",
-                promocao.getIdVendedor(), promocao.getTitulo(), promocao.getDescricao(),
+                promocao.getCnpj(), promocao.getTitulo(), promocao.getDescricao(),
                 promocao.getValor(), promocao.getImagem(), promocao.getQuantidade(),
                 formato.format(promocao.getTempo()), promocao.getIdPromocao()
         ));
