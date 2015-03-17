@@ -2,8 +2,9 @@ package br.com.encontreoferta;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.io.Serializable;
 
-public class Promocao {
+public class Promocao implements Serializable{
 
     int idPromocao;
     int cnpj;
