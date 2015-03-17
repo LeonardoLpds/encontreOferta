@@ -2,7 +2,7 @@ package br.com.encontreoferta;
 
 public class Vendedor {
 
-    int idVendedor;
+    int cnpj;
     String nomeFantasia;
     String descricao;
     String telefone;
@@ -15,10 +15,10 @@ public class Vendedor {
     }
 
     public Vendedor(
-            int idVendedor, String nomeFantasia, String descricao, String telefone,
+            int cnpj, String nomeFantasia, String descricao, String telefone,
             String endereco, String email, String login, String senha
     ) {
-        this.idVendedor = idVendedor;
+        this.cnjp = cnpj;
         this.nomeFantasia = nomeFantasia;
         this.descricao = descricao;
         this.telefone = telefone;
@@ -28,8 +28,8 @@ public class Vendedor {
         this.senha = senha;
     }
 
-    public int getIdVendedor() {
-        return idVendedor;
+    public int getCnpj() {
+        return idCnpj;
     }
 
     public String getNomeFantasia() {
@@ -60,8 +60,8 @@ public class Vendedor {
         return senha;
     }
 
-    public void setIdVendedor(int idVendedor) {
-        this.idVendedor = idVendedor;
+    public void setCnpj(int cnpj) {
+        this.cnpj = cnpj;
     }
 
     public void setNomeFantasia(String nomeFantasia) {
