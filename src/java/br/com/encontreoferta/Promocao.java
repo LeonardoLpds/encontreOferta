@@ -68,8 +68,8 @@ public class Promocao implements Serializable{
         this.idPromocao = idPromocao;
     }
 
-    public void setCnpj(int idVendedor) {
-        this.idVendedor = idVendedor;
+    public void setCnpj(int cnpj) {
+        this.cnpj = cnpj;
     }
 
     public void setTitulo(String titulo) {

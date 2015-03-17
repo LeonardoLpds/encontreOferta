@@ -18,7 +18,7 @@ public class Vendedor {
             int cnpj, String nomeFantasia, String descricao, String telefone,
             String endereco, String email, String login, String senha
     ) {
-        this.cnjp = cnpj;
+        this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;
         this.descricao = descricao;
         this.telefone = telefone;
@@ -29,7 +29,7 @@ public class Vendedor {
     }
 
     public int getCnpj() {
-        return idCnpj;
+        return cnpj;
     }
 
     public String getNomeFantasia() {
