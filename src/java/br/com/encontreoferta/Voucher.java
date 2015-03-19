@@ -2,18 +2,18 @@ package br.com.encontreoferta;
 import java.io.Serializable;
 
 public class Voucher implements Serializable{
-    int idVoucher;
+    String idVoucher;
     int idPromocao;
 
     public Voucher() {
     }
 
-    public Voucher(int idVoucher, int idPromocao) {
+    public Voucher(String idVoucher, int idPromocao) {
         this.idVoucher = idVoucher;
         this.idPromocao = idPromocao;
     }
     
-    public int getIdVoucher() {
+    public String getIdVoucher() {
         return idVoucher;
     }
 
@@ -21,7 +21,7 @@ public class Voucher implements Serializable{
         return idPromocao;
     }
 
-    public void setIdVoucher(int idVoucher) {
+    public void setIdVoucher(String idVoucher) {
         this.idVoucher = idVoucher;
     }
 
