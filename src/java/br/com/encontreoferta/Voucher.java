@@ -1,6 +1,7 @@
 package br.com.encontreoferta;
+import java.io.Serializable;
 
-public class Voucher {
+public class Voucher implements Serializable{
     int idVoucher;
     int idPromocao;
 

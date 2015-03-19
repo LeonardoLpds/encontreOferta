@@ -1,6 +1,7 @@
 package br.com.encontreoferta;
+import java.io.Serializable;
 
-public class Vendedor {
+public class Vendedor implements Serializable{
 
     int cnpj;
     String nomeFantasia;
