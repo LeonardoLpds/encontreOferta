@@ -11,7 +11,7 @@ public class PromocaoDao {
     private Conexao conexao;
     private ResultSet resultado;
 
-    Promocao selecionarPorId(int id) {
+    public Promocao selecionarPorId(int id) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -31,7 +31,7 @@ public class PromocaoDao {
         }
     }
 
-    List<Promocao> selecionarTodos() {
+    public List<Promocao> selecionarTodos() {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -53,7 +53,7 @@ public class PromocaoDao {
         }
     }
 
-    boolean inserir(Promocao promocao) {
+    public boolean inserir(Promocao promocao) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -68,7 +68,7 @@ public class PromocaoDao {
         ));
     }
 
-    boolean alterar(Promocao promocao) {
+    public boolean alterar(Promocao promocao) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -84,7 +84,7 @@ public class PromocaoDao {
         ));
     }
     
-    boolean apagar(Promocao promocao){
+    public boolean apagar(Promocao promocao){
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
