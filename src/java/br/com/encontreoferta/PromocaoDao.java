@@ -16,7 +16,7 @@ public class PromocaoDao {
             this.conexao = new Conexao();
         }
 
-        this.resultado = conexao.consultar("Select * from promocao where id = " + id);
+        this.resultado = conexao.consultar("Select * from promocao where idPromocao = " + id);
         try {
             resultado.next();
             Promocao promocao = new Promocao(
@@ -40,7 +40,7 @@ public class PromocaoDao {
             List<Promocao> lista = new ArrayList<>();
             while (resultado.next()) {
                 Promocao promocao = new Promocao(
-                        resultado.getInt("id"), resultado.getInt("cnpj"),
+                        resultado.getInt("idPromocao"), resultado.getInt("cnpj"),
                         resultado.getString("titulo"), resultado.getString("descricao"),
                         resultado.getBigDecimal("valor"), resultado.getString("imagem"),
                         resultado.getInt("quantidade"), resultado.getDate("tempo")

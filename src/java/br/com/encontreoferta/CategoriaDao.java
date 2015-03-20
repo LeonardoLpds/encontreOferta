@@ -49,8 +49,8 @@ public class CategoriaDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Insert into categoria(idCategoria, nome, descricao) values(%d, '%s', '%s')",
-                categoria.getIdCategoria(), categoria.getNome(), categoria.getDescricao()
+                "Insert into categoria(nome, descricao) values('%s', '%s')",
+                categoria.getNome(), categoria.getDescricao()
         ));
     }
     
