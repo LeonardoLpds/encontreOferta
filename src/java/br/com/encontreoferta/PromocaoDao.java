@@ -77,7 +77,7 @@ public class PromocaoDao {
         return conexao.executar(String.format(
                 "Update promocao set cnpj = %d, titulo = '%s', descricao = '%s', "
                 + "valor = %d, imagem = '%s', quantidade = %d, tempo = '%s'"
-                + "where id = %d",
+                + "where idPromocao = %d",
                 promocao.getCnpj(), promocao.getTitulo(), promocao.getDescricao(),
                 promocao.getValor(), promocao.getImagem(), promocao.getQuantidade(),
                 formato.format(promocao.getTempo()), promocao.getIdPromocao()
@@ -88,6 +88,6 @@ public class PromocaoDao {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        return conexao.executar("delete from promocao where id = "+promocao.getIdPromocao());
+        return conexao.executar("delete from promocao where idPromocao = "+promocao.getIdPromocao());
     }
 }
