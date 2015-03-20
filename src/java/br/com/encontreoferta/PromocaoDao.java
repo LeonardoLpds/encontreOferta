@@ -20,7 +20,7 @@ public class PromocaoDao {
         try {
             resultado.next();
             Promocao promocao = new Promocao(
-                    id, resultado.getInt("cnpj"),
+                    id, resultado.getString("cnpj"),
                     resultado.getString("titulo"), resultado.getString("descricao"),
                     resultado.getBigDecimal("valor"), resultado.getString("imagem"),
                     resultado.getInt("quantidade"), resultado.getDate("tempo")
@@ -40,7 +40,7 @@ public class PromocaoDao {
             List<Promocao> lista = new ArrayList<>();
             while (resultado.next()) {
                 Promocao promocao = new Promocao(
-                        resultado.getInt("idPromocao"), resultado.getInt("cnpj"),
+                        resultado.getInt("idPromocao"), resultado.getString("cnpj"),
                         resultado.getString("titulo"), resultado.getString("descricao"),
                         resultado.getBigDecimal("valor"), resultado.getString("imagem"),
                         resultado.getInt("quantidade"), resultado.getDate("tempo")
@@ -48,7 +48,7 @@ public class PromocaoDao {
                 lista.add(promocao);
             }
             return lista;
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             return null;
         }
     }
@@ -61,7 +61,7 @@ public class PromocaoDao {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return conexao.executar(String.format(
                 "Insert into promocao(cnpj, titulo, descricao, valor, "
-                + "imagem, quantidade, tempo) values(%d, '%s', '%s', %d, '%s', %d, '%s')",
+                + "imagem, quantidade, tempo) values('%s', '%s', '%s', %d, '%s', %d, '%s')",
                 promocao.getCnpj(), promocao.getTitulo(), promocao.getDescricao(),
                 promocao.getValor(), promocao.getImagem(), promocao.getQuantidade(),
                 formato.format(promocao.getTempo())
@@ -75,7 +75,7 @@ public class PromocaoDao {
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return conexao.executar(String.format(
-                "Update promocao set cnpj = %d, titulo = '%s', descricao = '%s', "
+                "Update promocao set cnpj = '%s', titulo = '%s', descricao = '%s', "
                 + "valor = %d, imagem = '%s', quantidade = %d, tempo = '%s'"
                 + "where idPromocao = %d",
                 promocao.getCnpj(), promocao.getTitulo(), promocao.getDescricao(),

@@ -12,15 +12,12 @@
         <h1>Encontre Oferta</h1>
         <%
             PromocaoDao pd = new PromocaoDao();
-            
-            
-            EnsaioService service = new EnsaioService();
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            DecimalFormat formatoNumero = new DecimalFormat("R$ #,##0.00");
-            List<Ensaio> ensaios = service.selecionarTodos();
-            String msg = service.getMsg();
-            if (!msg.equals("Sucesso")) {
-                response.sendRedirect(String.format("controle?acao=exibirErro&msg=%s", msg));
+            List<Promocao> promocoes = pd.selecionarTodos();
+
+            if (promocoes != null) {
+                for (Promocao promocao : promocoes) {
+                    promocao.getTitulo();
+                }
             }
         %>
     </body>

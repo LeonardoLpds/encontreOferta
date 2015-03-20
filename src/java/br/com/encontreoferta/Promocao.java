@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Promocao implements Serializable{
 
     int idPromocao;
-    int cnpj;
+    String cnpj;
     String titulo;
     String descricao;
     BigDecimal valor;
@@ -19,7 +19,7 @@ public class Promocao implements Serializable{
     }
 
     public Promocao(
-            int idPromocao, int cnpj, String titulo, String descricao,
+            int idPromocao, String cnpj, String titulo, String descricao,
             BigDecimal valor, String imagem, int quantidade, Date tempo
     ) {
         this.idPromocao = idPromocao;
@@ -36,7 +36,7 @@ public class Promocao implements Serializable{
         return idPromocao;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
@@ -68,7 +68,7 @@ public class Promocao implements Serializable{
         this.idPromocao = idPromocao;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 

@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public class Vendedor implements Serializable{
 
-    int cnpj;
+    String cnpj;
     String nomeFantasia;
     String descricao;
     String telefone;
@@ -16,7 +16,7 @@ public class Vendedor implements Serializable{
     }
 
     public Vendedor(
-            int cnpj, String nomeFantasia, String descricao, String telefone,
+            String cnpj, String nomeFantasia, String descricao, String telefone,
             String endereco, String email, String login, String senha
     ) {
         this.cnpj = cnpj;
@@ -29,7 +29,7 @@ public class Vendedor implements Serializable{
         this.senha = senha;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
@@ -61,7 +61,7 @@ public class Vendedor implements Serializable{
         return senha;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
