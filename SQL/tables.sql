@@ -10,11 +10,20 @@ Create table vendedor(
     senha varchar(50) not null
 );
 
+Create table categoria(
+    idCategoria int not null generated always as identity
+        constraint pk_categoria primary key,
+    nome varchar(50) not null,
+    descricao varchar(100) not null
+);
+
 Create table promocao(
     idPromocao int not null generated always as identity
         constraint pk_promocao primary key,
     cnpj int not null,
         constraint fk_promocao_vendedor foreign key (cnpj) references vendedor,
+    idCategoria int not null,
+        constraint fk_promocao_categoria foreign key (idCategoria) references categoria,
     titulo varchar(50) not null,
     descricao varchar(200) not null,
     valor decimal(7,2) not null,
