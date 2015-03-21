@@ -42,13 +42,16 @@ public class Controle extends HttpServlet {
         }
         
         switch (acao) {
-            case "formAlterar":
+            case "formIncluirPromocao":
+                rd = request.getRequestDispatcher("incluirPromocao.jsp");
+                break;
+            case "formAlterarPromocao":
                 id = Integer.parseInt(request.getParameter("id"));
                 Promocao promocao = pd.selecionarPorId(id);
                 rd = request.getRequestDispatcher("alterarPromocao.jsp");
                 request.setAttribute("promocao", promocao);
                 break;
-            case "alterar":
+            case "alterarPromocao":
                 try {
                     id = Integer.parseInt(request.getParameter("id"));
                     Promocao promoAlter = new Promocao(id, request.getParameter("cnpj"),

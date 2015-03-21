@@ -13,7 +13,7 @@
         %>
         <h1>Alterar Promoção</h1>
         <form method="post" action="controle">
-            <input type="hidden" name="acao" value="alterar" />
+            <input type="hidden" name="acao" value="alterarPromocao" />
             <input type="hidden" name="id" value="<%= promocao.getIdPromocao()%>" />
             <p><label>Titulo: <input type="text" name="titulo" value="<%= promocao.getTitulo()%>" required="true"></label></p>
             <p><label>Descrição: <input type="text" name="descricao" value="<%= promocao.getDescricao()%>" required="true"></label></p>
