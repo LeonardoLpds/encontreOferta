@@ -3,6 +3,11 @@ package br.com.encontreoferta.controle;
 import br.com.encontreoferta.Promocao;
 import br.com.encontreoferta.PromocaoDao;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,16 +32,40 @@ public class Controle extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        int id = 0;
         PromocaoDao pd = new PromocaoDao();
         String acao = request.getParameter("acao");
-        int id = Integer.parseInt(request.getParameter("id"));
         
-        switch(acao){
+        if (acao == null) {
+            acao = "default";
+        }
+        if (acao.equals("")) {
+            acao = "default";
+        }
+        
+        switch (acao) {
             case "formAlterar":
+                id = Integer.parseInt(request.getParameter("id"));
                 Promocao promocao = pd.selecionarPorId(id);
                 rd = request.getRequestDispatcher("alterarPromocao.jsp");
                 request.setAttribute("promocao", promocao);
                 break;
+            case "alterar":
+                try {
+                    id = Integer.parseInt(request.getParameter("id"));
+                    Promocao promoAlter = new Promocao(id, request.getParameter("cnpj"),
+                            Integer.parseInt(request.getParameter("idCategoria")),
+                            request.getParameter("titulo"), request.getParameter("descricao"),
+                            BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor"))),
+                            request.getParameter("image"), Integer.parseInt(request.getParameter("quantidade")),
+                            formato.parse(request.getParameter("tempo"))
+                    );
+                    pd.alterar(promoAlter);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            case "default":
             default:
                 break;
         }

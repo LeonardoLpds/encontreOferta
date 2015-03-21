@@ -1,5 +1,6 @@
 package br.com.encontreoferta;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -79,7 +80,7 @@ public class PromocaoDao {
                 + "valor = %d, imagem = '%s', quantidade = %d, tempo = '%s'"
                 + "where idPromocao = %d",
                 promocao.getCnpj(), promocao.getIdCategoria(), promocao.getTitulo(), promocao.getDescricao(),
-                promocao.getValor(), promocao.getImagem(), promocao.getQuantidade(),
+                promocao.getValor().intValue(), promocao.getImagem(), promocao.getQuantidade(),
                 formato.format(promocao.getTempo()), promocao.getIdPromocao()
         ));
     }

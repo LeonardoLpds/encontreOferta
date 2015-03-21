@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="br.com.encontreoferta.Promocao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,8 +21,8 @@
             <p><label>Nome da imagem: <input type="text" name="imagem" value="<%= promocao.getImagem()%>"></label></p>
             <p><label>Id da categoria: <input type="text" name="idCategoria" value="<%= promocao.getIdCategoria()%>"></label></p>
             <p><label>Quantidade: <input type="number" name="quantidade" value="<%= promocao.getQuantidade()%>"></label></p>
-            <p><label>Data de termino: <input type="date" name="tempo" value="<%= promocao.getTempo()%>"></label></p>
-            <p><label>Valor: <input type="text" name="valor" value="<%= promocao.getValor()%>"></label></p>
+            <p><label>Data de termino: <input type="text" name="tempo" value="<%= promocao.getTempo()%>"></label></p>
+            <p><label>Valor: <input type="number" name="valor" value="<%= new DecimalFormat("###0").format(promocao.getValor())%>"></label></p>
             <p><input type="submit" value="Alterar"></p>
         </form>
     </body>
