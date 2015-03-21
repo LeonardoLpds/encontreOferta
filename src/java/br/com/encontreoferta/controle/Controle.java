@@ -2,6 +2,8 @@ package br.com.encontreoferta.controle;
 
 import br.com.encontreoferta.Promocao;
 import br.com.encontreoferta.PromocaoDao;
+import br.com.encontreoferta.Vendedor;
+import br.com.encontreoferta.VendedorDao;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -34,13 +36,15 @@ public class Controle extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         int id = 0;
+        String cnpj = "";
         PromocaoDao pd = new PromocaoDao();
+        VendedorDao vd = new VendedorDao();
         String acao = request.getParameter("acao");
-        
+
         if (acao == null || acao.equals("")) {
             acao = "default";
         }
-        
+
         switch (acao) {
             case "formIncluirPromocao":
                 rd = request.getRequestDispatcher("incluirPromocao.jsp");
@@ -83,8 +87,21 @@ public class Controle extends HttpServlet {
                 id = Integer.parseInt(request.getParameter("id"));
                 Promocao promocaoex = pd.selecionarPorId(id);
                 pd.apagar(promocaoex);
-            case "incluirVendor":
-                //code...
+
+            case "formAlterarVendedor":
+                cnpj = request.getParameter("cnpj");
+                Vendedor vendedor = vd.selecionarPorCnpj(cnpj);
+                rd = request.getRequestDispatcher("alterarVendedor.jsp");
+                request.setAttribute("vendedor", vendedor);
+                break;
+            case "alterarVendedor":
+                cnpj = request.getParameter("cnpj");
+                Vendedor vendedorAlter = new Vendedor(cnpj, request.getParameter("nome"),
+                        request.getParameter("descricao"), request.getParameter("telefone"),
+                        request.getParameter("endereco"), request.getParameter("email"),
+                        request.getParameter("login"), request.getParameter("senha")
+                );
+                vd.alterar(vendedorAlter);
             case "default":
             default:
                 break;

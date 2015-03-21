@@ -21,7 +21,7 @@ public class VendedorDao {
             Vendedor vendedor = new Vendedor(
                     cnpj,
                     resultado.getString("nomeFantasia"), resultado.getString("descricao"),
-                    resultado.getString("telefone"), resultado.getString("endereco"),
+                    resultado.getString("tel"), resultado.getString("endereco"),
                     resultado.getString("email"), resultado.getString("login"),
                     resultado.getString("senha")
             );
@@ -73,7 +73,7 @@ public class VendedorDao {
         }
         return conexao.executar(String.format(
                 "Update app.vendedor set nomeFantasia = '%s', descricao = %s, "
-                + "telefone = '%s', endereco = '%s', email = '%s', login = '%s', "
+                + "tel = '%s', endereco = '%s', email = '%s', login = '%s', "
                 + "senha = '%s' where cnpj = '%s'",
                 vendedor.getNomeFantasia(), vendedor.getDescricao(),
                 vendedor.getTelefone(), vendedor.getEndereco(), vendedor.getEmail(),
