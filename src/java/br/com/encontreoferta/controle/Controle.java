@@ -45,6 +45,20 @@ public class Controle extends HttpServlet {
             case "formIncluirPromocao":
                 rd = request.getRequestDispatcher("incluirPromocao.jsp");
                 break;
+            case "incluirPromocao":
+                try {
+                    Promocao promo = new Promocao(request.getParameter("cnpj"),
+                            Integer.parseInt(request.getParameter("idCategoria")),
+                            request.getParameter("titulo"), request.getParameter("descricao"),
+                            BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor"))),
+                            request.getParameter("imagem"), Integer.parseInt(request.getParameter("quantidade")),
+                            formato.parse(request.getParameter("tempo"))
+                    );
+                    pd.inserir(promo);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
             case "formAlterarPromocao":
                 id = Integer.parseInt(request.getParameter("id"));
                 Promocao promocao = pd.selecionarPorId(id);

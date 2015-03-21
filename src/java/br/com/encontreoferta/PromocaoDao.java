@@ -64,7 +64,7 @@ public class PromocaoDao {
                 "Insert into app.promocao(cnpj, idCategoria, titulo, descricao, valor, "
                 + "imagem, quantidade, tempo) values('%s', %d, '%s', '%s', %d, '%s', %d, '%s')",
                 promocao.getCnpj(), promocao.getIdCategoria(), promocao.getTitulo(), promocao.getDescricao(),
-                promocao.getValor(), promocao.getImagem(), promocao.getQuantidade(),
+                promocao.getValor().intValue(), promocao.getImagem(), promocao.getQuantidade(),
                 formato.format(promocao.getTempo())
         ));
     }
