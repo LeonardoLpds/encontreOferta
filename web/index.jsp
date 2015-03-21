@@ -7,17 +7,41 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Econtre Oferta</title>
+        <style type="text/css">
+            table{border-collapse: collapse;}
+            th{background-color: green; color: whitesmoke;}
+            th, td{padding: 10px;}
+            table, th, td{border: 2px solid black}
+            a{font-weight: bold; color: green;}
+            a:link, a:visited{text-decoration: none;}
+            a:hover, a:active{text-decoration: underline;}
+
+        </style>
     </head>
     <body>
         <h1>Encontre Oferta</h1>
-        <%
-            PromocaoDao pd = new PromocaoDao();
-            List<Promocao> promocoes = pd.selecionarTodos();
-            if (promocoes != null) {
-                for (Promocao promocao : promocoes) {
-                    out.print(promocao.getTitulo());
-                }
-            }
-        %>
+        <h2>Promoções:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Titulo</th><th>Descrição</th><th>Valor</th><th>Valida Até</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    PromocaoDao pd = new PromocaoDao();
+                    List<Promocao> promocoes = pd.selecionarTodos();
+                    if (promocoes != null) {
+                        for (Promocao promocao : promocoes) {
+                %>
+                <tr>
+                    <td><%= promocao.getTitulo() %></td><td><%= promocao.getDescricao()%></td><td><%= promocao.getValor()%></td><td><%= promocao.getTempo() %></td>
+                </tr>
+                <%
+                        }
+                    }
+                %>
+            </tbody>
+        </table>
     </body>
 </html>
