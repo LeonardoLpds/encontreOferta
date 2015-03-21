@@ -13,10 +13,9 @@
         <%
             PromocaoDao pd = new PromocaoDao();
             List<Promocao> promocoes = pd.selecionarTodos();
-
             if (promocoes != null) {
                 for (Promocao promocao : promocoes) {
-                    promocao.getTitulo();
+                    out.print(promocao.getTitulo());
                 }
             }
         %>
