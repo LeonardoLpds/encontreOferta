@@ -38,7 +38,7 @@
                         for (Promocao promocao : promocoes) {
                 %>
                 <tr>
-                    <td><%= promocao.getTitulo() %></td><td><%= promocao.getDescricao()%></td><td><%= promocao.getValor()%></td><td><%= promocao.getTempo() %></td><td><% %></td>
+                    <td><%= promocao.getTitulo() %></td><td><%= promocao.getDescricao()%></td><td><%= promocao.getValor()%></td><td><%= promocao.getTempo() %></td><td><%= cd.SelecionarPorId(promocao.getIdCategoria()).getNome() %></td>
                 </tr>
                 <%
                         }

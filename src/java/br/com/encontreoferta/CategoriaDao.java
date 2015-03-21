@@ -14,7 +14,7 @@ public class CategoriaDao {
             this.conexao = new Conexao();
         }
 
-        this.resultado = conexao.consultar("Select * from app.categoria where id = " + id);
+        this.resultado = conexao.consultar("Select * from app.categoria where idCategoria = " + id);
         try {
             resultado.next();
             Categoria categoria = new Categoria(id, resultado.getString("nome"), resultado.getString("descricao"));
@@ -33,7 +33,7 @@ public class CategoriaDao {
             List<Categoria> lista = new ArrayList<>();
             while (resultado.next()) {
                 Categoria categoria = new Categoria(
-                        resultado.getInt("id"), resultado.getString("nome"), 
+                        resultado.getInt("idCategoria"), resultado.getString("nome"), 
                         resultado.getString("descricao")
                 );
                 lista.add(categoria);
@@ -59,8 +59,8 @@ public class CategoriaDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Update app.categoria set idCategoria = %d, nome = '%s', descricao = '%s'",
-                categoria.getIdCategoria(), categoria.getNome(), categoria.getDescricao()
+                "Update app.categoria set nome = '%s', descricao = '%s' where idCategoria = %d",
+                categoria.getNome(), categoria.getDescricao(), categoria.getIdCategoria()
         ));
     }
     
