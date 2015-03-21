@@ -88,6 +88,9 @@ public class Controle extends HttpServlet {
                 Promocao promocaoex = pd.selecionarPorId(id);
                 pd.apagar(promocaoex);
 
+            case "formIncluirVendedor":
+                rd = request.getRequestDispatcher("incluirVendedor.jsp");
+                break;
             case "formAlterarVendedor":
                 cnpj = request.getParameter("cnpj");
                 Vendedor vendedor = vd.selecionarPorCnpj(cnpj);

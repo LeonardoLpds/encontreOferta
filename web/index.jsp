@@ -77,7 +77,7 @@
                     <td><%= vendedor.getCnpj()%></td>
                     <td><%= vendedor.getDescricao()%></td>
                     <td><%= vendedor.getTelefone()%></td>
-                    <td><%= vendedor.getEndereco() %></td>
+                    <td><%= vendedor.getEndereco()%></td>
                     <td><%= vendedor.getEmail()%></td>
                     <td><a href="controle?acao=formAlterarVendedor&cnpj=<%= vendedor.getCnpj()%>">Alterar</a>
                         <a href="controle?acao=excluirVendedor&cnpj=<%= vendedor.getCnpj()%>">Excluir</a></td>
@@ -88,5 +88,6 @@
                 %>
             </tbody>
         </table>
+        <p><a href="controle?acao=formIncluirVendedor">Incluir</a></p>
     </body>
 </html>
