@@ -26,7 +26,8 @@
         <table>
             <thead>
                 <tr>
-                    <th>Titulo</th><th>Descrição</th><th>Valor</th><th>Valida Até</th><th>Categoria</th>
+                    <th>Titulo</th><th>Descrição</th><th>Valor</th>
+                    <th>Valida Até</th><th>Categoria</th><th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +39,13 @@
                         for (Promocao promocao : promocoes) {
                 %>
                 <tr>
-                    <td><%= promocao.getTitulo() %></td><td><%= promocao.getDescricao()%></td><td><%= promocao.getValor()%></td><td><%= promocao.getTempo() %></td><td><%= cd.SelecionarPorId(promocao.getIdCategoria()).getNome() %></td>
+                    <td><%= promocao.getTitulo() %></td>
+                    <td><%= promocao.getDescricao()%></td>
+                    <td><%= promocao.getValor()%></td>
+                    <td><%= promocao.getTempo() %></td>
+                    <td><%= cd.SelecionarPorId(promocao.getIdCategoria()).getNome() %></td>
+                    <td><a href="controle?acao=formAlterar&id=<%= promocao.getIdPromocao() %>">Alterar</a>
+                    <a href="controle?acao=excluir&id=<%= promocao.getIdPromocao() %>">Excluir</a></td>
                 </tr>
                 <%
                         }
