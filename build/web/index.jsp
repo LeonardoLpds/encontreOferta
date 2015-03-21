@@ -1,3 +1,5 @@
+<%@page import="br.com.encontreoferta.Vendedor"%>
+<%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="br.com.encontreoferta.CategoriaDao"%>
 <%@page import="br.com.encontreoferta.PromocaoDao"%>
@@ -54,5 +56,37 @@
             </tbody>
         </table>
         <p><a href="controle?acao=formIncluirPromocao">Incluir</a></p>
+        <hr>
+        <h2>Vendedores:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th><th>CNPJ</th><th>Descrição</th>
+                    <th>Telefone</th><th>Endereço</th><th>Email</th><th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    VendedorDao vd = new VendedorDao();
+                    List<Vendedor> vendedores = vd.selecionarTodos();
+                    if (vendedores != null) {
+                        for (Vendedor vendedor : vendedores) {
+                %>
+                <tr>
+                    <td><%= vendedor.getNomeFantasia()%></td>
+                    <td><%= vendedor.getCnpj()%></td>
+                    <td><%= vendedor.getDescricao()%></td>
+                    <td><%= vendedor.getTelefone()%></td>
+                    <td><%= vendedor.getEndereco() %></td>
+                    <td><%= vendedor.getEmail()%></td>
+                    <td><a href="controle?acao=formAlterarPromocao&id=<%= vendedor.getCnpj()%>">Alterar</a>
+                        <a href="controle?acao=excluirPromocao&id=<%= vendedor.getCnpj()%>">Excluir</a></td>
+                </tr>
+                <%
+                        }
+                    }
+                %>
+            </tbody>
+        </table>
     </body>
 </html>

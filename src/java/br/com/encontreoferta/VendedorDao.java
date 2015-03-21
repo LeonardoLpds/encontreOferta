@@ -31,7 +31,7 @@ public class VendedorDao {
         }
     }
 
-    public List<Vendedor> selecionarTodos() {
+    public List<Vendedor> selecionarTodos(){
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -42,7 +42,7 @@ public class VendedorDao {
                 Vendedor vendedor = new Vendedor(
                         resultado.getString("cnpj"), resultado.getString("nomeFantasia"),
                         resultado.getString("descricao"),
-                        resultado.getString("telefone"), resultado.getString("endereco"),
+                        resultado.getString("tel"), resultado.getString("endereco"),
                         resultado.getString("email"), resultado.getString("login"),
                         resultado.getString("senha")
                 );

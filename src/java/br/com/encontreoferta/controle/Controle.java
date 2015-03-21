@@ -83,6 +83,8 @@ public class Controle extends HttpServlet {
                 id = Integer.parseInt(request.getParameter("id"));
                 Promocao promocaoex = pd.selecionarPorId(id);
                 pd.apagar(promocaoex);
+            case "incluirVendor":
+                //code...
             case "default":
             default:
                 break;
