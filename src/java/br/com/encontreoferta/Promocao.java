@@ -19,6 +19,17 @@ public class Promocao implements Serializable{
     public Promocao() {
     }
 
+    public Promocao(String cnpj, int idCategoria, String titulo, String descricao, BigDecimal valor, String imagem, int quantidade, Date tempo) {
+        this.cnpj = cnpj;
+        this.idCategoria = idCategoria;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.imagem = imagem;
+        this.quantidade = quantidade;
+        this.tempo = tempo;
+    }
+    
     public Promocao(
             int idPromocao, String cnpj, int idCategoria, String titulo, String descricao,
             BigDecimal valor, String imagem, int quantidade, Date tempo
