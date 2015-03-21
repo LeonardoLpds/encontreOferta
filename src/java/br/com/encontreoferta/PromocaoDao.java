@@ -20,7 +20,7 @@ public class PromocaoDao {
         try {
             resultado.next();
             Promocao promocao = new Promocao(
-                    id, resultado.getString("cnpj"),
+                    id, resultado.getString("cnpj"), resultado.getInt("idCategoria"),
                     resultado.getString("titulo"), resultado.getString("descricao"),
                     resultado.getBigDecimal("valor"), resultado.getString("imagem"),
                     resultado.getInt("quantidade"), resultado.getDate("tempo")
@@ -40,7 +40,7 @@ public class PromocaoDao {
             List<Promocao> lista = new ArrayList<>();
             while (resultado.next()) {
                 Promocao promocao = new Promocao(
-                        resultado.getInt("idPromocao"), resultado.getString("cnpj"),
+                        resultado.getInt("idPromocao"), resultado.getString("cnpj"), resultado.getInt("idCategoria"),
                         resultado.getString("titulo"), resultado.getString("descricao"),
                         resultado.getBigDecimal("valor"), resultado.getString("imagem"),
                         resultado.getInt("quantidade"), resultado.getDate("tempo")
