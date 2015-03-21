@@ -79,6 +79,10 @@ public class Controle extends HttpServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            case "excluirPromocao":
+                id = Integer.parseInt(request.getParameter("id"));
+                Promocao promocaoex = pd.selecionarPorId(id);
+                pd.apagar(promocaoex);
             case "default":
             default:
                 break;

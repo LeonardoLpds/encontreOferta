@@ -45,7 +45,7 @@
                     <td><%= promocao.getTempo()%></td>
                     <td><%= cd.SelecionarPorId(promocao.getIdCategoria()).getNome()%></td>
                     <td><a href="controle?acao=formAlterarPromocao&id=<%= promocao.getIdPromocao()%>">Alterar</a>
-                        <a href="controle?acao=excluir&id=<%= promocao.getIdPromocao()%>">Excluir</a></td>
+                        <a href="controle?acao=excluirPromocao&id=<%= promocao.getIdPromocao()%>">Excluir</a></td>
                 </tr>
                 <%
                         }

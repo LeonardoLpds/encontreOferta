@@ -1,6 +1,5 @@
 package br.com.encontreoferta;
 
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
