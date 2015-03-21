@@ -15,7 +15,7 @@ public class VendedorDao {
             this.conexao = new Conexao();
         }
 
-        this.resultado = conexao.consultar("Select * from vendedor where cnpj = '" + cnpj+"'");
+        this.resultado = conexao.consultar("Select * from app.vendedor where cnpj = '" + cnpj+"'");
         try {
             resultado.next();
             Vendedor vendedor = new Vendedor(
@@ -35,7 +35,7 @@ public class VendedorDao {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        this.resultado = conexao.consultar("Select * from vendedor");
+        this.resultado = conexao.consultar("Select * from app.vendedor");
         try {
             List<Vendedor> lista = new ArrayList<>();
             while (resultado.next()) {
@@ -59,7 +59,7 @@ public class VendedorDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Insert into vendedor(cnpj, nomeFantasia, descricao, telefone, "
+                "Insert into app.vendedor(cnpj, nomeFantasia, descricao, telefone, "
                 + "endereco, email, login, senha) values('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 vendedor.getCnpj(), vendedor.getNomeFantasia(), vendedor.getDescricao(),
                 vendedor.getTelefone(), vendedor.getEndereco(), vendedor.getEmail(),
@@ -72,7 +72,7 @@ public class VendedorDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Update vendedor set nomeFantasia = '%s', descricao = %s, "
+                "Update app.vendedor set nomeFantasia = '%s', descricao = %s, "
                 + "telefone = '%s', endereco = '%s', email = '%s', login = '%s', "
                 + "senha = '%s' where cnpj = '%s'",
                 vendedor.getNomeFantasia(), vendedor.getDescricao(),
@@ -85,6 +85,6 @@ public class VendedorDao {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        return conexao.executar("delete from vendedor where cnpj = '" + vendedor.getCnpj()+"'");
+        return conexao.executar("delete from app.vendedor where cnpj = '" + vendedor.getCnpj()+"'");
     }
 }

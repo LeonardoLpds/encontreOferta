@@ -14,7 +14,7 @@ public class CategoriaDao {
             this.conexao = new Conexao();
         }
 
-        this.resultado = conexao.consultar("Select * from categoria where id = " + id);
+        this.resultado = conexao.consultar("Select * from app.categoria where id = " + id);
         try {
             resultado.next();
             Categoria categoria = new Categoria(id, resultado.getString("nome"), resultado.getString("descricao"));
@@ -28,7 +28,7 @@ public class CategoriaDao {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        this.resultado = conexao.consultar("Select * from categoria");
+        this.resultado = conexao.consultar("Select * from app.categoria");
         try {
             List<Categoria> lista = new ArrayList<>();
             while (resultado.next()) {
@@ -49,7 +49,7 @@ public class CategoriaDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Insert into categoria(nome, descricao) values('%s', '%s')",
+                "Insert into app.categoria(nome, descricao) values('%s', '%s')",
                 categoria.getNome(), categoria.getDescricao()
         ));
     }
@@ -59,7 +59,7 @@ public class CategoriaDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Update categoria set idCategoria = %d, nome = '%s', descricao = '%s'",
+                "Update app.categoria set idCategoria = %d, nome = '%s', descricao = '%s'",
                 categoria.getIdCategoria(), categoria.getNome(), categoria.getDescricao()
         ));
     }
@@ -68,6 +68,6 @@ public class CategoriaDao {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        return conexao.executar("delete from categoria where idCategoria = "+categoria.getIdCategoria());
+        return conexao.executar("delete from app.categoria where idCategoria = "+categoria.getIdCategoria());
     }
 }

@@ -15,7 +15,7 @@ public class VoucherDao {
             this.conexao = new Conexao();
         }
 
-        this.resultado = conexao.consultar("Select * from voucher where idVoucher = " + num);
+        this.resultado = conexao.consultar("Select * from app.voucher where idVoucher = " + num);
         try {
             resultado.next();
             Voucher voucher = new Voucher(
@@ -31,7 +31,7 @@ public class VoucherDao {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        this.resultado = conexao.consultar("Select * from voucher");
+        this.resultado = conexao.consultar("Select * from app.voucher");
         try {
             List<Voucher> lista = new ArrayList<>();
             while (resultado.next()) {
@@ -51,7 +51,7 @@ public class VoucherDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Insert into voucher(idVoucher, idPromocao) values('%s', %d)",
+                "Insert into app.voucher(idVoucher, idPromocao) values('%s', %d)",
                 voucher.getIdVoucher(), voucher.getIdPromocao()
         ));
     }
@@ -60,6 +60,6 @@ public class VoucherDao {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        return conexao.executar("delete from voucher where idvoucher = " + voucher.getIdVoucher());
+        return conexao.executar("delete from app.voucher where idvoucher = " + voucher.getIdVoucher());
     }
 }
