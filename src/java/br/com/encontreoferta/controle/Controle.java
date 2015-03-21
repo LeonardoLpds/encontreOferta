@@ -37,10 +37,7 @@ public class Controle extends HttpServlet {
         PromocaoDao pd = new PromocaoDao();
         String acao = request.getParameter("acao");
         
-        if (acao == null) {
-            acao = "default";
-        }
-        if (acao.equals("")) {
+        if (acao == null || acao.equals("")) {
             acao = "default";
         }
         
@@ -58,7 +55,7 @@ public class Controle extends HttpServlet {
                             Integer.parseInt(request.getParameter("idCategoria")),
                             request.getParameter("titulo"), request.getParameter("descricao"),
                             BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor"))),
-                            request.getParameter("image"), Integer.parseInt(request.getParameter("quantidade")),
+                            request.getParameter("imagem"), Integer.parseInt(request.getParameter("quantidade")),
                             formato.parse(request.getParameter("tempo"))
                     );
                     pd.alterar(promoAlter);
