@@ -10,7 +10,7 @@ public class VoucherDao {
     private Conexao conexao;
     private ResultSet resultado;
 
-    Voucher selecionarPorNumeroDoVoucher(String num) {
+    public Voucher selecionarPorNumeroDoVoucher(String num) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -27,7 +27,7 @@ public class VoucherDao {
         }
     }
     
-    List<Voucher> selecionarTodos() {
+    public List<Voucher> selecionarTodos() {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -46,7 +46,7 @@ public class VoucherDao {
         }
     }
 
-    boolean inserir(Voucher voucher) {
+    public boolean inserir(Voucher voucher) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -56,7 +56,7 @@ public class VoucherDao {
         ));
     }
 
-    boolean apagar(Voucher voucher) {
+    public boolean apagar(Voucher voucher) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }

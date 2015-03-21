@@ -10,7 +10,7 @@ public class VendedorDao {
     private Conexao conexao;
     private ResultSet resultado;
 
-    Vendedor selecionarPorCnpj(String cnpj) {
+    public Vendedor selecionarPorCnpj(String cnpj) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -31,7 +31,7 @@ public class VendedorDao {
         }
     }
 
-    List<Vendedor> selecionarTodos() {
+    public List<Vendedor> selecionarTodos() {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -54,7 +54,7 @@ public class VendedorDao {
         }
     }
 
-    boolean inserir(Vendedor vendedor) {
+    public boolean inserir(Vendedor vendedor) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -67,7 +67,7 @@ public class VendedorDao {
         ));
     }
 
-    boolean alterar(Vendedor vendedor) {
+    public boolean alterar(Vendedor vendedor) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -81,7 +81,7 @@ public class VendedorDao {
         ));
     }
 
-    boolean apagar(Vendedor vendedor) {
+    public boolean apagar(Vendedor vendedor) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }

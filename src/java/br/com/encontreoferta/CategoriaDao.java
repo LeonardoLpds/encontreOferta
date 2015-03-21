@@ -9,7 +9,7 @@ public class CategoriaDao {
     private Conexao conexao;
     private ResultSet resultado;
     
-    Categoria SelecionarPorId(int id){
+    public Categoria SelecionarPorId(int id){
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -24,7 +24,7 @@ public class CategoriaDao {
         }
     }
     
-    List<Categoria> selecionarTodos() {
+    public List<Categoria> selecionarTodos() {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -44,7 +44,7 @@ public class CategoriaDao {
         }
     }
     
-    boolean inserir(Categoria categoria) {
+    public boolean inserir(Categoria categoria) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -54,7 +54,7 @@ public class CategoriaDao {
         ));
     }
     
-    boolean alterar(Categoria categoria) {
+    public boolean alterar(Categoria categoria) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -64,7 +64,7 @@ public class CategoriaDao {
         ));
     }
     
-    boolean apagar(Categoria categoria){
+    public boolean apagar(Categoria categoria){
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
