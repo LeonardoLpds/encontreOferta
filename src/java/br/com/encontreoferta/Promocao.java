@@ -8,6 +8,7 @@ public class Promocao implements Serializable{
 
     int idPromocao;
     String cnpj;
+    int idCategoria;
     String titulo;
     String descricao;
     BigDecimal valor;
@@ -19,11 +20,12 @@ public class Promocao implements Serializable{
     }
 
     public Promocao(
-            int idPromocao, String cnpj, String titulo, String descricao,
+            int idPromocao, String cnpj, int idCategoria, String titulo, String descricao,
             BigDecimal valor, String imagem, int quantidade, Date tempo
     ) {
         this.idPromocao = idPromocao;
         this.cnpj = cnpj;
+        this.idCategoria = idCategoria;
         this.titulo = titulo;
         this.descricao = descricao;
         this.valor = valor;
@@ -38,6 +40,10 @@ public class Promocao implements Serializable{
 
     public String getCnpj() {
         return cnpj;
+    }
+
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
     public String getTitulo() {
@@ -72,6 +78,10 @@ public class Promocao implements Serializable{
         this.cnpj = cnpj;
     }
 
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+    
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

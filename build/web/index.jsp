@@ -1,3 +1,4 @@
+<%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="br.com.encontreoferta.CategoriaDao"%>
 <%@page import="br.com.encontreoferta.PromocaoDao"%>
 <%@page import="java.util.List"%>
@@ -37,7 +38,7 @@
                         for (Promocao promocao : promocoes) {
                 %>
                 <tr>
-                    <td><%= promocao.getTitulo() %></td><td><%= promocao.getDescricao()%></td><td><%= promocao.getValor()%></td><td><%= promocao.getTempo() %></td><td><%  %></td>
+                    <td><%= promocao.getTitulo() %></td><td><%= promocao.getDescricao()%></td><td><%= promocao.getValor()%></td><td><%= promocao.getTempo() %></td><td><% %></td>
                 </tr>
                 <%
                         }
