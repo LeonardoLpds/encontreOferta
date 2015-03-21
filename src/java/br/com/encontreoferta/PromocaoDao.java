@@ -60,9 +60,9 @@ public class PromocaoDao {
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return conexao.executar(String.format(
-                "Insert into app.promocao(cnpj, titulo, descricao, valor, "
-                + "imagem, quantidade, tempo) values('%s', '%s', '%s', %d, '%s', %d, '%s')",
-                promocao.getCnpj(), promocao.getTitulo(), promocao.getDescricao(),
+                "Insert into app.promocao(cnpj, idCategoria, titulo, descricao, valor, "
+                + "imagem, quantidade, tempo) values('%s', %d, '%s', '%s', %d, '%s', %d, '%s')",
+                promocao.getCnpj(), promocao.getIdCategoria(), promocao.getTitulo(), promocao.getDescricao(),
                 promocao.getValor(), promocao.getImagem(), promocao.getQuantidade(),
                 formato.format(promocao.getTempo())
         ));
@@ -75,10 +75,10 @@ public class PromocaoDao {
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return conexao.executar(String.format(
-                "Update app.promocao set cnpj = '%s', titulo = '%s', descricao = '%s', "
+                "Update app.promocao set cnpj = '%s', idCategoria = %d, titulo = '%s', descricao = '%s', "
                 + "valor = %d, imagem = '%s', quantidade = %d, tempo = '%s'"
                 + "where idPromocao = %d",
-                promocao.getCnpj(), promocao.getTitulo(), promocao.getDescricao(),
+                promocao.getCnpj(), promocao.getIdCategoria(), promocao.getTitulo(), promocao.getDescricao(),
                 promocao.getValor(), promocao.getImagem(), promocao.getQuantidade(),
                 formato.format(promocao.getTempo()), promocao.getIdPromocao()
         ));
