@@ -26,6 +26,34 @@
     </head>
     <body>
         <h1>Encontre Oferta</h1>
+        <h2>Categorias:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th><th>Descrição</th><th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    CategoriaDao cd = new CategoriaDao();
+                    List<Categoria> categorias = cd.selecionarTodos();
+                    if (categorias != null) {
+                        for (Categoria categoria : categorias) {
+                %>
+                <tr>
+                    <td><%= categoria.getNome()%></td>
+                    <td><%= categoria.getDescricao()%></td>
+                    <td><a href="controle?acao=formAlterarCategoria&id=<%= categoria.getIdCategoria()%>">Alterar</a>
+                        <a href="controle?acao=excluirCategoria&id=<%= categoria.getIdCategoria()%>">Excluir</a></td>
+                </tr>
+                <%
+                        }
+                    }
+                %>
+            </tbody>
+        </table>
+        <p><a href="controle?acao=formIncluirCategoria">Incluir</a></p>
+        <hr>
         <h2>Promoções:</h2>
         <table>
             <thead>
@@ -37,7 +65,6 @@
             <tbody>
                 <%
                     PromocaoDao pd = new PromocaoDao();
-                    CategoriaDao cd = new CategoriaDao();
                     List<Promocao> promocoes = pd.selecionarTodos();
                     if (promocoes != null) {
                         for (Promocao promocao : promocoes) {
