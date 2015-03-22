@@ -1,3 +1,5 @@
+<%@page import="br.com.encontreoferta.Voucher"%>
+<%@page import="br.com.encontreoferta.VoucherDao"%>
 <%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
@@ -89,5 +91,31 @@
             </tbody>
         </table>
         <p><a href="controle?acao=formIncluirVendedor">Incluir</a></p>
+        <hr>
+        <h2>Vouchers:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Numero do Voucher</th><th>Promoção</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    VoucherDao vod = new VoucherDao();
+                    List<Voucher> vouchers = vod.selecionarTodos();
+                    if (vouchers != null) {
+                        for (Voucher voucher : vouchers) {
+                %>
+                <tr>
+                    <td><%= voucher.getIdVoucher()%></td>
+                    <td><%= pd.selecionarPorId(voucher.getIdPromocao()).getTitulo() %></td>
+                </tr>
+                <%
+                        }
+                    }
+                %>
+            </tbody>
+        </table>
+        <p><a href="controle?acao=formIncluirVoucher">Incluir</a></p>
     </body>
 </html>
