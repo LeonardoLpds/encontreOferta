@@ -80,6 +80,11 @@ public class Controle extends HttpServlet {
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
+            case "excluirCategoria":
+                id = Integer.parseInt(request.getParameter("id"));
+                Categoria catx = cd.SelecionarPorId(id);
+                cd.apagar(catx);
+                break;
             case "formIncluirPromocao":
                 rd = request.getRequestDispatcher("incluirPromocao.jsp");
                 break;
