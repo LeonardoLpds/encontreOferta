@@ -1,3 +1,5 @@
+<%@page import="br.com.encontreoferta.Categoria"%>
+<%@page import="br.com.encontreoferta.CategoriaDao"%>
 <%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.encontreoferta.VendedorDao"%>
@@ -30,7 +32,21 @@
                     </select>
                 </label></p>
             <p><label>Nome da imagem: <input type="text" name="imagem" required="true"></label></p>
-            <p><label>Id da categoria: <input type="text" name="idCategoria" required="true"></label></p>
+            <p><label>Categoria: 
+                    <select name="idCategoria">
+                        <%
+                            CategoriaDao cd = new CategoriaDao();
+                            List<Categoria> categorias = cd.selecionarTodos();
+                            if (categorias != null) {
+                                for (Categoria categoria : categorias) {
+                        %>
+                            <option value="<%= categoria.getIdCategoria() %>"><%= categoria.getNome() %></option>
+                        <%
+                                }
+                            }
+                        %>
+                    </select>
+                </label></p>
             <p><label>Quantidade: <input type="number" name="quantidade" required="true"></label></p>
             <p><label>Data de termino: <input type="date" name="tempo" required="true"></label></p>
             <p><label>Valor: <input type="number" name="valor" required="true"></label></p>
