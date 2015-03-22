@@ -96,7 +96,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Numero do Voucher</th><th>Promoção</th>
+                    <th>Numero do Voucher</th><th>Promoção</th><th>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -109,6 +109,7 @@
                 <tr>
                     <td><%= voucher.getIdVoucher()%></td>
                     <td><%= pd.selecionarPorId(voucher.getIdPromocao()).getTitulo() %></td>
+                    <td><a href="controle?acao=excluirVoucher&numVoucher=<%= voucher.getIdVoucher()%>">Excluir</a></td>
                 </tr>
                 <%
                         }

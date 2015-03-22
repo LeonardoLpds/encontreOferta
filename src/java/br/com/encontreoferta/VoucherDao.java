@@ -15,7 +15,7 @@ public class VoucherDao {
             this.conexao = new Conexao();
         }
 
-        this.resultado = conexao.consultar("Select * from app.voucher where idVoucher = " + num);
+        this.resultado = conexao.consultar("Select * from app.voucher where idVoucher = '" + num +"'");
         try {
             resultado.next();
             Voucher voucher = new Voucher(
@@ -60,6 +60,6 @@ public class VoucherDao {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        return conexao.executar("delete from app.voucher where idvoucher = " + voucher.getIdVoucher());
+        return conexao.executar("delete from app.voucher where idvoucher = '" + voucher.getIdVoucher()+"'");
     }
 }

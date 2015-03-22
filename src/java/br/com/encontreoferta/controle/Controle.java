@@ -119,12 +119,21 @@ public class Controle extends HttpServlet {
                 );
                 vd.inserir(vend);
                 break;
+            case "excluirVendedor":
+                cnpj = request.getParameter("cnpj");
+                Vendedor ven = vd.selecionarPorCnpj(cnpj);
+                vd.apagar(ven);
+                break;
             case "formIncluirVoucher":
                 rd = request.getRequestDispatcher("incluirVoucher.jsp");
                 break;
             case "incluirVoucher":
                 Voucher voucher = new Voucher(request.getParameter("numVoucher"), Integer.parseInt(request.getParameter("idPromocao")));
                 vod.inserir(voucher);
+                break;
+            case "excluirVoucher":
+                Voucher vo = vod.selecionarPorNumeroDoVoucher(request.getParameter("numVoucher"));
+                vod.apagar(vo);
                 break;
             case "default":
             default:
