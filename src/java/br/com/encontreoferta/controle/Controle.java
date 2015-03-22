@@ -108,13 +108,16 @@ public class Controle extends HttpServlet {
                 vd.alterar(vendedorAlter);
                 break;
             case "incluirVendedor":
-                    Vendedor vend = new Vendedor(request.getParameter("cnpj"), 
-                            request.getParameter("nome"), request.getParameter("descricao"), 
-                            request.getParameter("telefone"), request.getParameter("endereco"), 
-                            request.getParameter("email"), request.getParameter("nome"), 
-                            request.getParameter("nome")
-                    );
-                    vd.inserir(vend);
+                Vendedor vend = new Vendedor(request.getParameter("cnpj"),
+                        request.getParameter("nome"), request.getParameter("descricao"),
+                        request.getParameter("telefone"), request.getParameter("endereco"),
+                        request.getParameter("email"), request.getParameter("nome"),
+                        request.getParameter("nome")
+                );
+                vd.inserir(vend);
+                break;
+            case "formIncluirVoucher":
+                rd = request.getRequestDispatcher("incluirVoucher.jsp");
                 break;
             case "default":
             default:
