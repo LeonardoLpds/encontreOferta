@@ -1,5 +1,5 @@
 Create table vendedor(
-    cnpj int not null
+    cnpj varchar(18) not null
         constraint pk_vendedor primary key,
     nomeFantasia varchar(50) not null,
     descricao varchar(200)  not null,
@@ -20,7 +20,7 @@ Create table categoria(
 Create table promocao(
     idPromocao int not null generated always as identity
         constraint pk_promocao primary key,
-    cnpj int not null,
+    cnpj varchar(18) not null,
         constraint fk_promocao_vendedor foreign key (cnpj) references vendedor,
     idCategoria int not null,
         constraint fk_promocao_categoria foreign key (idCategoria) references categoria,
