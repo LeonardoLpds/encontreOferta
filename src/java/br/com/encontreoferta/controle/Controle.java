@@ -1,5 +1,7 @@
 package br.com.encontreoferta.controle;
 
+import br.com.encontreoferta.Categoria;
+import br.com.encontreoferta.CategoriaDao;
 import br.com.encontreoferta.Promocao;
 import br.com.encontreoferta.PromocaoDao;
 import br.com.encontreoferta.Vendedor;
@@ -39,6 +41,7 @@ public class Controle extends HttpServlet {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         int id = 0;
         String cnpj = "";
+        CategoriaDao cd = new CategoriaDao();
         PromocaoDao pd = new PromocaoDao();
         VendedorDao vd = new VendedorDao();
         VoucherDao vod = new VoucherDao();
@@ -49,6 +52,13 @@ public class Controle extends HttpServlet {
         }
 
         switch (acao) {
+            case "formIncluirCategoria":
+                rd = request.getRequestDispatcher("incluirCategoria.jsp");
+                break;
+            case "incluirCategoria":
+                    Categoria cat = new Categoria(request.getParameter("nome"), request.getParameter("descricao"));
+                    cd.inserir(cat);
+                break;
             case "formIncluirPromocao":
                 rd = request.getRequestDispatcher("incluirPromocao.jsp");
                 break;
