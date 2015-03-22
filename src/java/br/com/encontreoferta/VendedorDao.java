@@ -72,12 +72,12 @@ public class VendedorDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Update app.vendedor set nomeFantasia = '%s', descricao = %s, "
-                + "tel = '%s', endereco = '%s', email = '%s', login = '%s', "
-                + "senha = '%s' where cnpj = '%s'",
+                "Update app.vendedor set nomeFantasia = '%s', descricao = '%s', "
+                + "tel = '%s', endereco = '%s', email = '%s'"
+                + " where cnpj = '%s'",
                 vendedor.getNomeFantasia(), vendedor.getDescricao(),
                 vendedor.getTelefone(), vendedor.getEndereco(), vendedor.getEmail(),
-                vendedor.getLogin(), vendedor.getSenha(), vendedor.getCnpj()
+                vendedor.getCnpj()
         ));
     }
 
