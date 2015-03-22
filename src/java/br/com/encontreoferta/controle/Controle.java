@@ -56,8 +56,29 @@ public class Controle extends HttpServlet {
                 rd = request.getRequestDispatcher("incluirCategoria.jsp");
                 break;
             case "incluirCategoria":
-                    Categoria cat = new Categoria(request.getParameter("nome"), request.getParameter("descricao"));
-                    cd.inserir(cat);
+                Categoria cat = new Categoria(request.getParameter("nome"), request.getParameter("descricao"));
+                cd.inserir(cat);
+                break;
+            case "formAlterarCategoria":
+                id = Integer.parseInt(request.getParameter("id"));
+                Categoria categoria = cd.SelecionarPorId(id);
+                rd = request.getRequestDispatcher("alterarCategoria.jsp");
+                request.setAttribute("categoria", categoria);
+                break;
+            case "alterarPromocao":
+                try {
+                    id = Integer.parseInt(request.getParameter("id"));
+                    Promocao promoAlter = new Promocao(id, request.getParameter("cnpj"),
+                            Integer.parseInt(request.getParameter("idCategoria")),
+                            request.getParameter("titulo"), request.getParameter("descricao"),
+                            BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor"))),
+                            request.getParameter("imagem"), Integer.parseInt(request.getParameter("quantidade")),
+                            formato.parse(request.getParameter("tempo"))
+                    );
+                    pd.alterar(promoAlter);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
             case "formIncluirPromocao":
                 rd = request.getRequestDispatcher("incluirPromocao.jsp");
@@ -82,20 +103,10 @@ public class Controle extends HttpServlet {
                 rd = request.getRequestDispatcher("alterarPromocao.jsp");
                 request.setAttribute("promocao", promocao);
                 break;
-            case "alterarPromocao":
-                try {
+            case "alterarCategoria":
                     id = Integer.parseInt(request.getParameter("id"));
-                    Promocao promoAlter = new Promocao(id, request.getParameter("cnpj"),
-                            Integer.parseInt(request.getParameter("idCategoria")),
-                            request.getParameter("titulo"), request.getParameter("descricao"),
-                            BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor"))),
-                            request.getParameter("imagem"), Integer.parseInt(request.getParameter("quantidade")),
-                            formato.parse(request.getParameter("tempo"))
-                    );
-                    pd.alterar(promoAlter);
-                } catch (ParseException ex) {
-                    Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    Categoria cate = new Categoria(id, request.getParameter("nome"), request.getParameter("descricao"));
+                    cd.alterar(cate);
                 break;
             case "excluirPromocao":
                 id = Integer.parseInt(request.getParameter("id"));
