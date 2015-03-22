@@ -1,3 +1,6 @@
+<%@page import="br.com.encontreoferta.Promocao"%>
+<%@page import="java.util.List"%>
+<%@page import="br.com.encontreoferta.PromocaoDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,7 +13,21 @@
         <form method="post" action="controle">
             <input type="hidden" name="acao" value="incluirVoucher" />
             <p><label>Numero do Voucher: <input type="text" name="numVoucher" required="true"></label></p>
-            <p><label>Id da promoção: <input type="text" name="idPromocao" required="true"></label></p>
+            <p><label>Promoção: 
+                    <select name="idPromocao">
+                        <%
+                            PromocaoDao pd = new PromocaoDao();
+                            List<Promocao> promocoes = pd.selecionarTodos();
+                            if (promocoes != null) {
+                                for (Promocao promocao : promocoes) {
+                        %>
+                            <option value="<%= promocao.getIdPromocao() %>"><%= promocao.getTitulo() %></option>
+                        <%
+                                }
+                            }
+                        %>
+                    </select>
+                </label></p>
             <p><input type="submit" value="incluir"></p>
         </form>
     </body>
