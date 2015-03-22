@@ -59,7 +59,7 @@ public class VendedorDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Insert into app.vendedor(cnpj, nomeFantasia, descricao, telefone, "
+                "Insert into app.vendedor(cnpj, nomeFantasia, descricao, tel, "
                 + "endereco, email, login, senha) values('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 vendedor.getCnpj(), vendedor.getNomeFantasia(), vendedor.getDescricao(),
                 vendedor.getTelefone(), vendedor.getEndereco(), vendedor.getEmail(),

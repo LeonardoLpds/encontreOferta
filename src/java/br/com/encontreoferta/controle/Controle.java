@@ -83,11 +83,12 @@ public class Controle extends HttpServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                break;
             case "excluirPromocao":
                 id = Integer.parseInt(request.getParameter("id"));
                 Promocao promocaoex = pd.selecionarPorId(id);
                 pd.apagar(promocaoex);
-
+                break;
             case "formIncluirVendedor":
                 rd = request.getRequestDispatcher("incluirVendedor.jsp");
                 break;
@@ -105,6 +106,16 @@ public class Controle extends HttpServlet {
                         request.getParameter("login"), request.getParameter("senha")
                 );
                 vd.alterar(vendedorAlter);
+                break;
+            case "incluirVendedor":
+                    Vendedor vend = new Vendedor(request.getParameter("cnpj"), 
+                            request.getParameter("nome"), request.getParameter("descricao"), 
+                            request.getParameter("telefone"), request.getParameter("endereco"), 
+                            request.getParameter("email"), request.getParameter("nome"), 
+                            request.getParameter("nome")
+                    );
+                    vd.inserir(vend);
+                break;
             case "default":
             default:
                 break;
