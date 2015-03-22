@@ -4,6 +4,8 @@ import br.com.encontreoferta.Promocao;
 import br.com.encontreoferta.PromocaoDao;
 import br.com.encontreoferta.Vendedor;
 import br.com.encontreoferta.VendedorDao;
+import br.com.encontreoferta.Voucher;
+import br.com.encontreoferta.VoucherDao;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -39,6 +41,7 @@ public class Controle extends HttpServlet {
         String cnpj = "";
         PromocaoDao pd = new PromocaoDao();
         VendedorDao vd = new VendedorDao();
+        VoucherDao vod = new VoucherDao();
         String acao = request.getParameter("acao");
 
         if (acao == null || acao.equals("")) {
@@ -118,6 +121,10 @@ public class Controle extends HttpServlet {
                 break;
             case "formIncluirVoucher":
                 rd = request.getRequestDispatcher("incluirVoucher.jsp");
+                break;
+            case "incluirVoucher":
+                Voucher voucher = new Voucher(request.getParameter("numVoucher"), Integer.parseInt(request.getParameter("idPromocao")));
+                vod.inserir(voucher);
                 break;
             case "default":
             default:
