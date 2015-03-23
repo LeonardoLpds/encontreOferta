@@ -6,18 +6,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Alterar Promoção</title>
+        <link href="estilos.css" rel="stylesheet" type="text/css">
+
     </head>
     <body>
+        <%@ include file="header.html" %>
         <%
             Categoria categoria = (Categoria) request.getAttribute("categoria");
         %>
-        <h1>Alterar Categoria</h1>
-        <form method="post" action="controle">
-            <input type="hidden" name="acao" value="alterarCategoria" />
-            <input type="hidden" name="id" value="<%=categoria.getIdCategoria()%>" />
-            <p><label>nome: <input type="text" name="nome" value="<%= categoria.getNome()%>" required="true"></label></p>
-            <p><label>Descrição: <input type="text" name="descricao" value="<%= categoria.getDescricao()%>" required="true"></label></p>
-            <p><input type="submit" value="Alterar"></p>
-        </form>
+        <div class="boxBranco">
+            <h2>Alterar Categoria</h2>
+            <hr>
+            <form method="post" action="controle">
+                <input type="hidden" name="acao" value="alterarCategoria" />
+                <input type="hidden" name="id" value="<%=categoria.getIdCategoria()%>" />
+                <p><label>nome: <input type="text" name="nome" value="<%= categoria.getNome()%>" required="true"></label></p>
+                <p><label>Descrição: <input type="text" name="descricao" value="<%= categoria.getDescricao()%>" required="true"></label></p>
+                <p><input type="submit" value="Alterar"></p>
+            </form>
+        </div>
     </body>
+    <%@ include file="footer.html" %>
 </html>
