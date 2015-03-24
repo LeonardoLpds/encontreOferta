@@ -4,6 +4,7 @@
 <%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="br.com.encontreoferta.CategoriaDao"%>
+<%@page import="br.com.encontreoferta.CategoriaService"%>
 <%@page import="br.com.encontreoferta.PromocaoDao"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.encontreoferta.Promocao"%>
@@ -28,8 +29,8 @@
               </thead>
             <tbody>
               <%
-                    CategoriaDao cd = new CategoriaDao();
-                    List<Categoria> categorias = cd.selecionarTodos();
+                    CategoriaService cs = new CategoriaService();
+                    List<Categoria> categorias = cs.selecionarTodos();
                     if (categorias != null) {
                         for (Categoria categoria : categorias) {
                 %>
