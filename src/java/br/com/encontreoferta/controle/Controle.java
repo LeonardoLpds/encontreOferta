@@ -2,6 +2,7 @@ package br.com.encontreoferta.controle;
 
 import br.com.encontreoferta.Categoria;
 import br.com.encontreoferta.CategoriaDao;
+import br.com.encontreoferta.CategoriaService;
 import br.com.encontreoferta.Promocao;
 import br.com.encontreoferta.PromocaoDao;
 import br.com.encontreoferta.Vendedor;
@@ -61,6 +62,10 @@ public class Controle extends HttpServlet {
         Promocao promocao = new Promocao();
         Voucher voucher = new Voucher();
         
+        
+        //Declarando services
+        CategoriaService categoriaService = new CategoriaService();
+        
         //Declarando variavel que definira a ação a ser tomada
         String acao = request.getParameter("acao");
         
@@ -98,7 +103,7 @@ public class Controle extends HttpServlet {
             case "incluirCategoria":
                 categoria.setNome(request.getParameter("nome"));
                 categoria.setDescricao(request.getParameter("descricao"));
-                categoriaDao.inserir(categoria);
+                categorService.inserir(categoria);
                 break;
                 
             case "incluirPromocao":
@@ -130,7 +135,7 @@ public class Controle extends HttpServlet {
             //Chamando formulários de alteração
             case "formAlterarCategoria":
                 id = Integer.parseInt(request.getParameter("id"));
-                categoria = categoriaDao.SelecionarPorId(id);
+                categoria = categoriaService.SelecionarPorId(id);
                 rd = request.getRequestDispatcher("alterarCategoria.jsp");
                 request.setAttribute("categoria", categoria);
                 break;
@@ -172,7 +177,7 @@ public class Controle extends HttpServlet {
                     categoria.setIdCategoria(id);
                     categoria.setNome(request.getParameter("nome"));
                     categoria.setDescricao(request.getParameter("descricao"));
-                    categoriaDao.alterar(categoria);
+                    categoriaService.alterar(categoria);
                 break;
                 
             case "alterarVendedor":
@@ -190,7 +195,7 @@ public class Controle extends HttpServlet {
             case "excluirCategoria":
                 id = Integer.parseInt(request.getParameter("id"));
                 categoria = categoriaDao.SelecionarPorId(id);
-                categoriaDao.apagar(categoria);
+                categoriaService.apagar(categoria);
                 break;
             case "excluirPromocao":
                 id = Integer.parseInt(request.getParameter("id"));
