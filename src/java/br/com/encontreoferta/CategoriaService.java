@@ -18,30 +18,20 @@ public class CategoriaService {
         return lista;
     }
     
-    public void inserir(Categoria categoria){
+    public boolean inserir(Categoria categoria){
         if(categoria.getNome.equals("") || categoria.getDescricao.equals("")){
-            //Msg
+            return false
         }
-        /**
-        *if(categoria.getNome().trim().length() > 50){
-        *    categoria.setNome(categoria.getNome.trim().substring(0, 50));
-        *}
-        **/
-        
         dao.inserir(categoria);
+        return true
     }
     
-    public void alterar(Categoria categoria){
+    public boolean alterar(Categoria categoria){
         if(categoria.getNome.equals("") || categoria.getDescricao.equals("")){
-            //Msg
+            return false
         }
-        /**
-        *if(categoria.getNome().trim().length() > 50){
-        *    categoria.setNome(categoria.getNome.trim().substring(0, 50));
-        *}
-        **/
-        
         dao.alterar(categoria);
+        return true;
     }
     
     public void apagar(Categoria categoria){
