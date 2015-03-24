@@ -37,134 +37,181 @@ public class Controle extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        
+        //Declarando variavel de redirecionamento
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        
+        //Declarando varival de formato de Data
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        int id = 0;
-        String cnpj = "";
-        CategoriaDao cd = new CategoriaDao();
-        PromocaoDao pd = new PromocaoDao();
-        VendedorDao vd = new VendedorDao();
-        VoucherDao vod = new VoucherDao();
+        
+        //Declarando variaveis de referencia de objetos
+        int id;
+        String cnpj;
+        BigDecimal valor;
+        
+        //Declarando objetos DAOs
+        CategoriaDao categoriaDao = new CategoriaDao();
+        PromocaoDao promocaoDao = new PromocaoDao();
+        VendedorDao vendedorDao = new VendedorDao();
+        VoucherDao voucherDao = new VoucherDao();
+        
+        //Declarando objetos a serem manipulados
+        Categoria categoria = new Categoria();
+        Vendedor vendedor = new Vendedor();
+        Promocao promocao = new Promocao();
+        Voucher voucher = new Voucher();
+        
+        //Declarando variavel que definira a ação a ser tomada
         String acao = request.getParameter("acao");
-
+        
+        //Verifico se existe realmente alguma ação
         if (acao == null || acao.equals("")) {
             acao = "default";
         }
 
         switch (acao) {
+            //Chamando formulários de inclusão
             case "formIncluirCategoria":
                 rd = request.getRequestDispatcher("incluirCategoria.jsp");
-                break;
-            case "incluirCategoria":
-                Categoria cat = new Categoria(request.getParameter("nome"), request.getParameter("descricao"));
-                cd.inserir(cat);
-                break;
-            case "formAlterarCategoria":
-                id = Integer.parseInt(request.getParameter("id"));
-                Categoria categoria = cd.SelecionarPorId(id);
-                rd = request.getRequestDispatcher("alterarCategoria.jsp");
-                request.setAttribute("categoria", categoria);
-                break;
-            case "alterarPromocao":
-                try {
-                    id = Integer.parseInt(request.getParameter("id"));
-                    Promocao promoAlter = new Promocao(id, request.getParameter("cnpj"),
-                            Integer.parseInt(request.getParameter("idCategoria")),
-                            request.getParameter("titulo"), request.getParameter("descricao"),
-                            BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor"))),
-                            request.getParameter("imagem"), Integer.parseInt(request.getParameter("quantidade")),
-                            formato.parse(request.getParameter("tempo"))
-                    );
-                    pd.alterar(promoAlter);
-                } catch (ParseException ex) {
-                    Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-            case "excluirCategoria":
-                id = Integer.parseInt(request.getParameter("id"));
-                Categoria catx = cd.SelecionarPorId(id);
-                cd.apagar(catx);
-                break;
-            case "formIncluirPromocao":
-                rd = request.getRequestDispatcher("incluirPromocao.jsp");
-                break;
-            case "incluirPromocao":
-                try {
-                    Promocao promo = new Promocao(request.getParameter("cnpj"),
-                            Integer.parseInt(request.getParameter("idCategoria")),
-                            request.getParameter("titulo"), request.getParameter("descricao"),
-                            BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor"))),
-                            request.getParameter("imagem"), Integer.parseInt(request.getParameter("quantidade")),
-                            formato.parse(request.getParameter("tempo"))
-                    );
-                    pd.inserir(promo);
-                } catch (ParseException ex) {
-                    Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-            case "formAlterarPromocao":
-                id = Integer.parseInt(request.getParameter("id"));
-                Promocao promocao = pd.selecionarPorId(id);
-                rd = request.getRequestDispatcher("alterarPromocao.jsp");
-                request.setAttribute("promocao", promocao);
-                break;
-            case "alterarCategoria":
-                    id = Integer.parseInt(request.getParameter("id"));
-                    Categoria cate = new Categoria(id, request.getParameter("nome"), request.getParameter("descricao"));
-                    cd.alterar(cate);
-                break;
-            case "excluirPromocao":
-                id = Integer.parseInt(request.getParameter("id"));
-                Promocao promocaoex = pd.selecionarPorId(id);
-                pd.apagar(promocaoex);
                 break;
             case "formIncluirVendedor":
                 rd = request.getRequestDispatcher("incluirVendedor.jsp");
                 break;
-            case "formAlterarVendedor":
-                cnpj = request.getParameter("cnpj");
-                Vendedor vendedor = vd.selecionarPorCnpj(cnpj);
-                rd = request.getRequestDispatcher("alterarVendedor.jsp");
-                request.setAttribute("vendedor", vendedor);
-                break;
-            case "alterarVendedor":
-                cnpj = request.getParameter("cnpj");
-                Vendedor vendedorAlter = new Vendedor(cnpj, request.getParameter("nome"),
-                        request.getParameter("descricao"), request.getParameter("telefone"),
-                        request.getParameter("endereco"), request.getParameter("email"),
-                        request.getParameter("login"), request.getParameter("senha")
-                );
-                vd.alterar(vendedorAlter);
-                break;
-            case "incluirVendedor":
-                Vendedor vend = new Vendedor(request.getParameter("cnpj"),
-                        request.getParameter("nome"), request.getParameter("descricao"),
-                        request.getParameter("telefone"), request.getParameter("endereco"),
-                        request.getParameter("email"), request.getParameter("nome"),
-                        request.getParameter("nome")
-                );
-                vd.inserir(vend);
-                break;
-            case "excluirVendedor":
-                cnpj = request.getParameter("cnpj");
-                Vendedor ven = vd.selecionarPorCnpj(cnpj);
-                vd.apagar(ven);
+            case "formIncluirPromocao":
+                rd = request.getRequestDispatcher("incluirPromocao.jsp");
                 break;
             case "formIncluirVoucher":
                 rd = request.getRequestDispatcher("incluirVoucher.jsp");
                 break;
+            
+            //Executando ações de inclusão
+            case "incluirVendedor":
+                vendedor.setCnpj(request.getParameter("cnpj"));
+                vendedor.setNomeFantasia(request.getParameter("nome"));
+                vendedor.setDescricao(request.getParameter("descricao"));
+                vendedor.setTelefone(request.getParameter("telefone"));
+                vendedor.setEndereco(request.getParameter("endereco"));
+                vendedor.setEmail(request.getParameter("email"));
+                vendedorDao.inserir(vendedor);
+                break;
+                
+            case "incluirCategoria":
+                categoria.setNome(request.getParameter("nome"));
+                categoria.setDescricao(request.getParameter("descricao"));
+                categoriaDao.inserir(categoria);
+                break;
+                
+            case "incluirPromocao":
+                try {
+                    promocao.setCnpj(request.getParameter("cnpj"));
+                    id = Integer.parseInt(request.getParameter("idCategoria"));
+                    promocao.setIdCategoria(id);
+                    promocao.setTitulo(request.getParameter("titulo"));
+                    promocao.setDescricao(request.getParameter("descricao"));
+                    valor = BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor")))
+                    promocao.setValor(valor);
+                    promocao.setImagem(request.getParameter("imagem"));
+                    promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+                    promocao.setTempo(formato.parse(request.getParameter("tempo")));
+                    
+                    promocaoDao.inserir(promocao);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                
             case "incluirVoucher":
-                Voucher voucher = new Voucher(request.getParameter("numVoucher"), Integer.parseInt(request.getParameter("idPromocao")));
-                vod.inserir(voucher);
+                voucher.setIdVoucher(request.getParameter("numVoucher"));
+                id = Integer.parseInt(request.getParameter("idPromocao")));
+                voucher.setIdPromocao(id);
+                voucherDao.inserir(voucher);
+                break;
+            
+            //Chamando formulários de alteração
+            case "formAlterarCategoria":
+                id = Integer.parseInt(request.getParameter("id"));
+                categoria = categoriaDao.SelecionarPorId(id);
+                rd = request.getRequestDispatcher("alterarCategoria.jsp");
+                request.setAttribute("categoria", categoria);
+                break;
+            case "formAlterarPromocao":
+                id = Integer.parseInt(request.getParameter("id"));
+                promocao = pd.selecionarPorId(id);
+                rd = request.getRequestDispatcher("alterarPromocao.jsp");
+                request.setAttribute("promocao", promocao);
+                break;
+            case "formAlterarVendedor":
+                cnpj = request.getParameter("cnpj");
+                vendedor = vd.selecionarPorCnpj(cnpj);
+                rd = request.getRequestDispatcher("alterarVendedor.jsp");
+                request.setAttribute("vendedor", vendedor);
+                break;
+            
+            //Executando ações de alteração    
+            case "alterarPromocao":
+                try {
+                    id = Integer.parseInt(request.getParameter("id"));
+                    promocao.setIdPromocao(id);
+                    promocao.setCnpj(request.getParameter("cnpj"));
+                    promocao.setIdCategoria(Integer.parseInt(request.getParameter("idCategoria")));
+                    promocao.setTitulo(request.getParameter("titulo"));
+                    promocao.setDescricao(request.getParameter("descricao"));
+                    valor = BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor")));
+                    promocao.setValor(valor);
+                    promocao.setImagem(request.getParameter("imagem"));
+                    promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+                    promocao.setTempo(formato.parse(request.getParameter("tempo"))
+                    promocaoDao.alterar(promocao);
+                } catch (ParseException ex)x {
+                    Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                
+            case "alterarCategoria":
+                    id = Integer.parseInt(request.getParameter("id"));
+                    categoria.setIdCategoria(id);
+                    categoria.setNome(request.getParameter("nome"));
+                    categoria.setDescricao(request.getParameter("descricao"));
+                    categoriaDao.alterar(categoria);
+                break;
+                
+            case "alterarVendedor":
+                cnpj = request.getParameter("cnpj");
+                vendedor.setCnpj(cnpj);
+                vendedor.setNomeFantasia(request.getParameter("nome"));
+                vendedor.setDescricao(request.getParameter("descricao"));
+                vendedor.setTelefone(request.getParameter("telefone"));
+                vendedor.setEndereco(request.getParameter("endereco"));
+                vendedor.setEmail(request.getParameter("email"));
+                vendedorDao.alterar(vendedor);
+                break;
+                
+            //Executando ações de exclusão
+            case "excluirCategoria":
+                id = Integer.parseInt(request.getParameter("id"));
+                categoria = categoriaDao.SelecionarPorId(id);
+                categoriaDao.apagar(categoria);
+                break;
+            case "excluirPromocao":
+                id = Integer.parseInt(request.getParameter("id"));
+                promocao = promocaoDao.selecionarPorId(id);
+                promocaoDao.apagar(promocao);
+                break;
+            case "excluirVendedor":
+                cnpj = request.getParameter("cnpj");
+                vendedor = vendedorDao.selecionarPorCnpj(cnpj);
+                vendedorDao.apagar(vendedor);
                 break;
             case "excluirVoucher":
-                Voucher vo = vod.selecionarPorNumeroDoVoucher(request.getParameter("numVoucher"));
-                vod.apagar(vo);
+                voucher = voucherDao.selecionarPorNumeroDoVoucher(request.getParameter("numVoucher"));
+                voucherDao.apagar(voucher);
                 break;
             case "default":
             default:
                 break;
         }
+        
+        //Redireciona o usuário conforme requisição
         rd.forward(request, response);
     }
 
