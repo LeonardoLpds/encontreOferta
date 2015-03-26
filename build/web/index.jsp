@@ -1,5 +1,6 @@
+<%@page import="br.com.encontreoferta.VoucherService"%>
 <%@page import="br.com.encontreoferta.Voucher"%>
-<%@page import="br.com.encontreoferta.VoucherDao"%>
+<%@page import="br.com.encontreoferta.CategoriaService"%>
 <%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
@@ -17,6 +18,7 @@
 </head>
     <body>
         <%@ include file="header.html" %>
+        <!-- Lista todas as categorias -->
         <div class="boxBranco">
           <h2>Categorias:</h2>
           <hr>
@@ -47,6 +49,7 @@
             </table>
           <p><a href="controle?acao=formIncluirCategoria">Incluir categoria</a></p>
         </div>
+        <!-- Lista todas as promoções -->
         <div class="boxBranco">
           <h2>Promoções:</h2>
           <hr>
@@ -81,6 +84,7 @@
             </table>
           <p><a href="controle?acao=formIncluirPromocao">Incluir promoção</a></p>
         </div>
+        <!-- Lista todos os vendedores -->
         <div class="boxBranco">
           <h2>Vendedores:</h2>
           <hr>
@@ -116,6 +120,7 @@
             </table>
           <p><a href="controle?acao=formIncluirVendedor">Incluir vendedor</a></p>
         </div>
+        <!-- Lista todos os vouchers -->
         <div class="boxBranco">
           <h2>Vouchers:</h2>
           <hr>
@@ -127,8 +132,8 @@
               </thead>
             <tbody>
               <%
-                    VoucherDao vod = new VoucherDao();
-                    List<Voucher> vouchers = vod.selecionarTodos();
+                    VoucherService voucherService = new VoucherService();
+                    List<Voucher> vouchers = voucherService.selecionarTodos();
                     if (vouchers != null) {
                         for (Voucher voucher : vouchers) {
                 %>
