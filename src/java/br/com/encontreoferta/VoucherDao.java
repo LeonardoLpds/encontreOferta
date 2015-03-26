@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VoucherDao {
-
     private Conexao conexao;
     private ResultSet resultado;
+
+    public VoucherDao() {
+    }
 
     public Voucher selecionarPorNumeroDoVoucher(String num) {
         if (this.conexao == null) {

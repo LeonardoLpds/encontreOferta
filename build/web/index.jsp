@@ -3,7 +3,7 @@
 <%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
-<%@page import="br.com.encontreoferta.CategoriaDao"%>
+<%@page import="br.com.encontreoferta.CategoriaService"%>
 <%@page import="br.com.encontreoferta.PromocaoDao"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.encontreoferta.Promocao"%>
@@ -28,8 +28,8 @@
               </thead>
             <tbody>
               <%
-                    CategoriaDao cd = new CategoriaDao();
-                    List<Categoria> categorias = cd.selecionarTodos();
+                    CategoriaService categoriaService = new CategoriaService();
+                    List<Categoria> categorias = categoriaService.selecionarTodos();
                     if (categorias != null) {
                         for (Categoria categoria : categorias) {
                 %>
@@ -69,7 +69,7 @@
                 <td><%= promocao.getDescricao()%></td>
                 <td><%= promocao.getValor()%></td>
                 <td><%= promocao.getTempo()%></td>
-                <td><%= cd.SelecionarPorId(promocao.getIdCategoria()).getNome()%></td>
+                <td><%= categoriaService.selecionarPorId(promocao.getIdCategoria()).getNome()%></td>
                 <td align="center"><a href="controle?acao=formAlterarPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
                   <a href="controle?acao=excluirPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
                 </tr>
