@@ -18,40 +18,9 @@
 </head>
     <body>
         <%@ include file="header.html" %>
-        <!-- Lista todas as categorias -->
-        <div class="boxBranco">
-          <h2>Categorias:</h2>
-          <hr>
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th><th>Descrição</th><th width="70">Ações</th>
-                </tr>
-              </thead>
-            <tbody>
-              <%
-                    CategoriaService categoriaService = new CategoriaService();
-                    List<Categoria> categorias = categoriaService.selecionarTodos();
-                    if (categorias != null) {
-                        for (Categoria categoria : categorias) {
-                %>
-              <tr>
-                <td><%= categoria.getNome()%></td>
-                <td><%= categoria.getDescricao()%></td>
-                <td align="center"><a href="controle?acao=formAlterarCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
-                  <a href="controle?acao=excluirCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
-                </tr>
-              <%
-                        }
-                    }
-                %>
-              </tbody>
-            </table>
-          <p><a href="controle?acao=formIncluirCategoria">Incluir categoria</a></p>
-        </div>
         <!-- Lista todas as promoções -->
         <div class="boxBranco">
-          <h2>Promoções:</h2>
+          <h2>Ultimas Promoções:</h2>
           <hr>
           <table>
             <thead>
@@ -62,10 +31,16 @@
               </thead>
             <tbody>
               <%
+                    CategoriaService categoriaService = new CategoriaService();
                     PromocaoDao pd = new PromocaoDao();
                     List<Promocao> promocoes = pd.selecionarTodos();
                     if (promocoes != null) {
-                        for (Promocao promocao : promocoes) {
+                        int limit = 3;
+                        if(promocoes.size() < 3){
+                            limit = 2;
+                        }
+                        for(int i = 0; i < limit ; i++){
+                            Promocao promocao = promocoes.get(i);
                 %>
               <tr>
                 <td><%= promocao.getTitulo()%></td>
@@ -83,8 +58,8 @@
               </tbody>
             </table>
           <p><a href="controle?acao=formIncluirPromocao">Incluir promoção</a></p>
-        </div>
-        <!-- Lista todos os vendedores -->
+        </div> 
+        <!-- Lista todos os vendedores 
         <div class="boxBranco">
           <h2>Vendedores:</h2>
           <hr>
@@ -119,8 +94,8 @@
               </tbody>
             </table>
           <p><a href="controle?acao=formIncluirVendedor">Incluir vendedor</a></p>
-        </div>
-        <!-- Lista todos os vouchers -->
+        </div> -->
+        <!-- Lista todos os vouchers
         <div class="boxBranco">
           <h2>Vouchers:</h2>
           <hr>
@@ -149,6 +124,6 @@
               </tbody>
             </table>
           <p><a href="controle?acao=formIncluirVoucher">Incluir voucher</a></p>
-        </div>
+        </div> -->
 </body>
 </html>
