@@ -103,7 +103,7 @@ public class Controle extends HttpServlet {
             case "incluirCategoria":
                 categoria.setNome(request.getParameter("nome"));
                 categoria.setDescricao(request.getParameter("descricao"));
-                categorService.inserir(categoria);
+                categoriaService.inserir(categoria);
                 break;
                 
             case "incluirPromocao":
@@ -113,7 +113,7 @@ public class Controle extends HttpServlet {
                     promocao.setIdCategoria(id);
                     promocao.setTitulo(request.getParameter("titulo"));
                     promocao.setDescricao(request.getParameter("descricao"));
-                    valor = BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor")))
+                    valor = BigDecimal.valueOf(Double.parseDouble(request.getParameter("valor")));
                     promocao.setValor(valor);
                     promocao.setImagem(request.getParameter("imagem"));
                     promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
@@ -127,7 +127,7 @@ public class Controle extends HttpServlet {
                 
             case "incluirVoucher":
                 voucher.setIdVoucher(request.getParameter("numVoucher"));
-                id = Integer.parseInt(request.getParameter("idPromocao")));
+                id = Integer.parseInt(request.getParameter("idPromocao"));
                 voucher.setIdPromocao(id);
                 voucherDao.inserir(voucher);
                 break;
@@ -135,19 +135,19 @@ public class Controle extends HttpServlet {
             //Chamando formulários de alteração
             case "formAlterarCategoria":
                 id = Integer.parseInt(request.getParameter("id"));
-                categoria = categoriaService.SelecionarPorId(id);
+                categoria = categoriaService.selecionarPorId(id);
                 rd = request.getRequestDispatcher("alterarCategoria.jsp");
                 request.setAttribute("categoria", categoria);
                 break;
             case "formAlterarPromocao":
                 id = Integer.parseInt(request.getParameter("id"));
-                promocao = pd.selecionarPorId(id);
+                promocao = promocaoDao.selecionarPorId(id);
                 rd = request.getRequestDispatcher("alterarPromocao.jsp");
                 request.setAttribute("promocao", promocao);
                 break;
             case "formAlterarVendedor":
                 cnpj = request.getParameter("cnpj");
-                vendedor = vd.selecionarPorCnpj(cnpj);
+                vendedor = vendedorDao.selecionarPorCnpj(cnpj);
                 rd = request.getRequestDispatcher("alterarVendedor.jsp");
                 request.setAttribute("vendedor", vendedor);
                 break;
@@ -165,9 +165,9 @@ public class Controle extends HttpServlet {
                     promocao.setValor(valor);
                     promocao.setImagem(request.getParameter("imagem"));
                     promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-                    promocao.setTempo(formato.parse(request.getParameter("tempo"))
+                    promocao.setTempo(formato.parse(request.getParameter("tempo")));
                     promocaoDao.alterar(promocao);
-                } catch (ParseException ex)x {
+                } catch (ParseException ex){
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
@@ -194,7 +194,7 @@ public class Controle extends HttpServlet {
             //Executando ações de exclusão
             case "excluirCategoria":
                 id = Integer.parseInt(request.getParameter("id"));
-                categoria = categoriaDao.SelecionarPorId(id);
+                categoria = categoriaDao.selecionarPorId(id);
                 categoriaService.apagar(categoria);
                 break;
             case "excluirPromocao":

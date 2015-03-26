@@ -9,7 +9,7 @@ public class CategoriaDao {
     private Conexao conexao;
     private ResultSet resultado;
     
-    public Categoria SelecionarPorId(int id){
+    public Categoria selecionarPorId(int id){
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }

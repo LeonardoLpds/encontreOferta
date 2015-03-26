@@ -19,22 +19,22 @@ public class CategoriaService {
     }
     
     public boolean inserir(Categoria categoria){
-        if(categoria.getNome.equals("") || categoria.getDescricao.equals("")){
-            return false
+        if(categoria.getNome().equals("") || categoria.getDescricao().equals("")){
+            return false;
         }
         dao.inserir(categoria);
-        return true
+        return true;
     }
     
     public boolean alterar(Categoria categoria){
-        if(categoria.getNome.equals("") || categoria.getDescricao.equals("")){
-            return false
+        if(categoria.getNome().equals("") || categoria.getDescricao().equals("")){
+            return false;
         }
         dao.alterar(categoria);
         return true;
     }
     
     public void apagar(Categoria categoria){
-        dao.apagar(ensaio);
+        dao.apagar(categoria);
     }
 }
