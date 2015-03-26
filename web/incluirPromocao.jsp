@@ -1,5 +1,5 @@
+<%@page import="br.com.encontreoferta.CategoriaService"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
-<%@page import="br.com.encontreoferta.CategoriaDao"%>
 <%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.encontreoferta.VendedorDao"%>
@@ -40,8 +40,8 @@
                 <p><label>Categoria: 
                         <select name="idCategoria">
                             <%
-                                CategoriaDao cd = new CategoriaDao();
-                                List<Categoria> categorias = cd.selecionarTodos();
+                                CategoriaService categoriaService = new CategoriaService();
+                                List<Categoria> categorias = categoriaService.selecionarTodos();
                                 if (categorias != null) {
                                     for (Categoria categoria : categorias) {
                             %>
