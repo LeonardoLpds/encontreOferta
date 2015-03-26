@@ -11,53 +11,53 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Econtre Oferta</title>
-<link href="estilos.css" rel="stylesheet" type="text/css">
-</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Econtre Oferta</title>
+        <link href="estilos.css" rel="stylesheet" type="text/css">
+    </head>
     <body>
         <%@ include file="header.html" %>
-        <!-- Lista todas as promoções -->
+        <!-- Lista todas as ultimas promoções -->
         <div class="boxBranco">
-          <h2>Ultimas Promoções:</h2>
-          <hr>
-          <table>
-            <thead>
-              <tr>
-                <th>Titulo</th><th>Descrição</th><th>Valor</th>
-                <th>Valida Até</th><th>Categoria</th><th width="70">Ações</th>
-                </tr>
-              </thead>
-            <tbody>
-              <%
-                    CategoriaService categoriaService = new CategoriaService();
-                    PromocaoDao pd = new PromocaoDao();
-                    List<Promocao> promocoes = pd.selecionarTodos();
-                    if (promocoes != null) {
-                        int limit = 3;
-                        if(promocoes.size() < 3){
-                            limit = 2;
+            <h2>Ultimas Promoções:</h2>
+            <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titulo</th><th>Descrição</th><th>Valor</th>
+                        <th>Valida Até</th><th>Categoria</th><th width="70">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        CategoriaService categoriaService = new CategoriaService();
+                        PromocaoDao pd = new PromocaoDao();
+                        List<Promocao> promocoes = pd.selecionarTodos();
+                        if (promocoes != null) {
+                            int limit = 3;
+                            if (promocoes.size() < 3) {
+                                limit = promocoes.size();
+                            }
+                            for (int i = 0; i < limit; i++) {
+                                Promocao promocao = promocoes.get(i);
+                    %>
+                    <tr>
+                        <td><%= promocao.getTitulo()%></td>
+                        <td><%= promocao.getDescricao()%></td>
+                        <td><%= promocao.getValor()%></td>
+                        <td><%= promocao.getTempo()%></td>
+                        <td><%= categoriaService.selecionarPorId(promocao.getIdCategoria()).getNome()%></td>
+                        <td align="center"><a href="controle?acao=formAlterarPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
+                            <a href="controle?acao=excluirPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
+                    </tr>
+                    <%
+                            }
                         }
-                        for(int i = 0; i < limit ; i++){
-                            Promocao promocao = promocoes.get(i);
-                %>
-              <tr>
-                <td><%= promocao.getTitulo()%></td>
-                <td><%= promocao.getDescricao()%></td>
-                <td><%= promocao.getValor()%></td>
-                <td><%= promocao.getTempo()%></td>
-                <td><%= categoriaService.selecionarPorId(promocao.getIdCategoria()).getNome()%></td>
-                <td align="center"><a href="controle?acao=formAlterarPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
-                  <a href="controle?acao=excluirPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
-                </tr>
-              <%
-                        }
-                    }
-                %>
-              </tbody>
+                    %>
+                </tbody>
             </table>
-          <p><a href="controle?acao=formIncluirPromocao">Incluir promoção</a></p>
+            <p><a href="controle?acao=formIncluirPromocao">Incluir promoção</a></p>
         </div> 
         <!-- Lista todos os vendedores 
         <div class="boxBranco">
@@ -71,30 +71,30 @@
                 </tr>
               </thead>
             <tbody>
-              <%
-                    VendedorDao vd = new VendedorDao();
-                    List<Vendedor> vendedores = vd.selecionarTodos();
-                    if (vendedores != null) {
-                        for (Vendedor vendedor : vendedores) {
-                %>
-              <tr>
-                <td><%= vendedor.getNomeFantasia()%></td>
-                <td><%= vendedor.getCnpj()%></td>
-                <td><%= vendedor.getDescricao()%></td>
-                <td><%= vendedor.getTelefone()%></td>
-                <td><%= vendedor.getEndereco()%></td>
-                <td><%= vendedor.getEmail()%></td>
-                <td align="center"><a href="controle?acao=formAlterarVendedor&cnpj=<%= vendedor.getCnpj()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
-                  <a href="controle?acao=excluirVendedor&cnpj=<%= vendedor.getCnpj()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
-                </tr>
-              <%
-                        }
-                    }
-                %>
-              </tbody>
-            </table>
-          <p><a href="controle?acao=formIncluirVendedor">Incluir vendedor</a></p>
-        </div> -->
+        <%
+            VendedorDao vd = new VendedorDao();
+            List<Vendedor> vendedores = vd.selecionarTodos();
+            if (vendedores != null) {
+                for (Vendedor vendedor : vendedores) {
+        %>
+      <tr>
+        <td><%= vendedor.getNomeFantasia()%></td>
+        <td><%= vendedor.getCnpj()%></td>
+        <td><%= vendedor.getDescricao()%></td>
+        <td><%= vendedor.getTelefone()%></td>
+        <td><%= vendedor.getEndereco()%></td>
+        <td><%= vendedor.getEmail()%></td>
+        <td align="center"><a href="controle?acao=formAlterarVendedor&cnpj=<%= vendedor.getCnpj()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
+          <a href="controle?acao=excluirVendedor&cnpj=<%= vendedor.getCnpj()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
+        </tr>
+        <%
+                }
+            }
+        %>
+      </tbody>
+    </table>
+  <p><a href="controle?acao=formIncluirVendedor">Incluir vendedor</a></p>
+</div> -->
         <!-- Lista todos os vouchers
         <div class="boxBranco">
           <h2>Vouchers:</h2>
@@ -106,24 +106,24 @@
                 </tr>
               </thead>
             <tbody>
-              <%
-                    VoucherService voucherService = new VoucherService();
-                    List<Voucher> vouchers = voucherService.selecionarTodos();
-                    if (vouchers != null) {
-                        for (Voucher voucher : vouchers) {
-                %>
-              <tr>
-                <td align="center"><%= voucher.getIdVoucher()%></td>
-                <td><%= pd.selecionarPorId(voucher.getIdPromocao()).getTitulo() %></td>
-                <td align="center"><a href="controle?acao=excluirVoucher&numVoucher=<%= voucher.getIdVoucher()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
-                </tr>
-              <%
-                        }
-                    }
-                %>
-              </tbody>
-            </table>
-          <p><a href="controle?acao=formIncluirVoucher">Incluir voucher</a></p>
-        </div> -->
-</body>
+        <%
+            VoucherService voucherService = new VoucherService();
+            List<Voucher> vouchers = voucherService.selecionarTodos();
+            if (vouchers != null) {
+                for (Voucher voucher : vouchers) {
+        %>
+      <tr>
+        <td align="center"><%= voucher.getIdVoucher()%></td>
+        <td><%= pd.selecionarPorId(voucher.getIdPromocao()).getTitulo()%></td>
+        <td align="center"><a href="controle?acao=excluirVoucher&numVoucher=<%= voucher.getIdVoucher()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
+        </tr>
+        <%
+                }
+            }
+        %>
+      </tbody>
+    </table>
+  <p><a href="controle?acao=formIncluirVoucher">Incluir voucher</a></p>
+</div> -->
+    </body>
 </html>

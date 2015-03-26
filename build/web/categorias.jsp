@@ -13,34 +13,34 @@
         <%@ include file="header.html" %>
         <!-- Lista todas as categorias -->
         <div class="boxBranco">
-          <h2>Categorias:</h2>
-          <hr>
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th><th>Descrição</th><th width="70">Ações</th>
-                </tr>
-              </thead>
-            <tbody>
-              <%
-                    CategoriaService categoriaService = new CategoriaService();
-                    List<Categoria> categorias = categoriaService.selecionarTodos();
-                    if (categorias != null) {
-                        for (Categoria categoria : categorias) {
-                %>
-              <tr>
-                <td><%= categoria.getNome()%></td>
-                <td><%= categoria.getDescricao()%></td>
-                <td align="center"><a href="controle?acao=formAlterarCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
-                  <a href="controle?acao=excluirCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
-                </tr>
-              <%
+            <h2>Categorias:</h2>
+            <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th><th>Descrição</th><th width="70">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        CategoriaService categoriaService = new CategoriaService();
+                        List<Categoria> categorias = categoriaService.selecionarTodos();
+                        if (categorias != null) {
+                            for (Categoria categoria : categorias) {
+                    %>
+                    <tr>
+                        <td><%= categoria.getNome()%></td>
+                        <td><%= categoria.getDescricao()%></td>
+                        <td align="center"><a href="controle?acao=formAlterarCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
+                            <a href="controle?acao=excluirCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
+                    </tr>
+                    <%
+                            }
                         }
-                    }
-                %>
-              </tbody>
+                    %>
+                </tbody>
             </table>
-          <p><a href="controle?acao=formIncluirCategoria">Incluir categoria</a></p>
+            <p><a href="controle?acao=formIncluirCategoria">Incluir categoria</a></p>
         </div>
     </body>
 </html>
