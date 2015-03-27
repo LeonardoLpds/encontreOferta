@@ -13,7 +13,7 @@
                 <h2>Login</h2>
                 <label>Nome de Usuário:</label> <input type="text" />
                 <label>Senha:</label> <input type="password" style="border: 1px solid #000"/>
-                <input type="submit" readonly="true" />
+                <input type="submit" readonly="true" value="Acessar" />
             </form>
             <form>
                 <h2>Cadastro</h2>
@@ -23,9 +23,9 @@
                 <label>CNPJ:</label> <input type="text" />
                 <label>Email:</label> <input type="email" />
                 <label>Telefone:</label> <input type="text" />
-                <label>Telefone:</label> <input type="text" />
+                <label>Endereco:</label> <input type="text" />
                 <label>Descrição:</label> <input type="text" />
-                <input type="submit" readonly="true" />
+                <input type="submit" readonly="true" value="Cadastrar" />
             </form>
         </div>
     </body>
