@@ -98,12 +98,14 @@ public class Controle extends HttpServlet {
                 vendedor.setEndereco(request.getParameter("endereco"));
                 vendedor.setEmail(request.getParameter("email"));
                 vendedorDao.inserir(vendedor);
+                rd = request.getRequestDispatcher("vendedores.jsp");
                 break;
                 
             case "incluirCategoria":
                 categoria.setNome(request.getParameter("nome"));
                 categoria.setDescricao(request.getParameter("descricao"));
                 categoriaService.inserir(categoria);
+                rd = request.getRequestDispatcher("categorias.jsp");
                 break;
                 
             case "incluirPromocao":
@@ -120,6 +122,7 @@ public class Controle extends HttpServlet {
                     promocao.setTempo(formato.parse(request.getParameter("tempo")));
                     
                     promocaoDao.inserir(promocao);
+                    rd = request.getRequestDispatcher("promocoes.jsp");
                 } catch (ParseException ex) {
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -167,6 +170,7 @@ public class Controle extends HttpServlet {
                     promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
                     promocao.setTempo(formato.parse(request.getParameter("tempo")));
                     promocaoDao.alterar(promocao);
+                    rd = request.getRequestDispatcher("promocoes.jsp");
                 } catch (ParseException ex){
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -178,6 +182,7 @@ public class Controle extends HttpServlet {
                     categoria.setNome(request.getParameter("nome"));
                     categoria.setDescricao(request.getParameter("descricao"));
                     categoriaService.alterar(categoria);
+                    rd = request.getRequestDispatcher("categorias.jsp");
                 break;
                 
             case "alterarVendedor":
@@ -189,6 +194,7 @@ public class Controle extends HttpServlet {
                 vendedor.setEndereco(request.getParameter("endereco"));
                 vendedor.setEmail(request.getParameter("email"));
                 vendedorDao.alterar(vendedor);
+                rd = request.getRequestDispatcher("vendedores.jsp");
                 break;
                 
             //Executando ações de exclusão

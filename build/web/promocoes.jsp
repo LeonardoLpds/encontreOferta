@@ -14,7 +14,7 @@
     <body>
         <%@ include file="header.html" %>
         <div class="boxBranco">
-            <h2>Ultimas Promoções:</h2>
+            <h2>Todas as Promoções:</h2>
             <hr>
             <table>
                 <thead>
