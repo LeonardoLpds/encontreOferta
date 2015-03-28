@@ -84,9 +84,6 @@ public class Controle extends HttpServlet {
             case "formIncluirPromocao":
                 rd = request.getRequestDispatcher("incluirPromocao.jsp");
                 break;
-            case "formIncluirVoucher":
-                rd = request.getRequestDispatcher("incluirVoucher.jsp");
-                break;
                 
             //Verificando produtos dependendo da categoria
             case "verPromocoesPorCategoria":
@@ -139,10 +136,16 @@ public class Controle extends HttpServlet {
                 break;
                 
             case "incluirVoucher":
-                voucher.setIdVoucher(request.getParameter("numVoucher"));
-                id = Integer.parseInt(request.getParameter("idPromocao"));
+                id = Integer.parseInt(request.getParameter("id"));
+                String nomePromocao = promocaoDao.selecionarPorId(id).getTitulo();
+                int num = (int) (Math.random() * 10000);
+                nomePromocao = nomePromocao.substring(0, 2);
+                String idVoucher = nomePromocao+String.valueOf(num);
+                voucher.setIdVoucher(idVoucher);
                 voucher.setIdPromocao(id);
                 voucherDao.inserir(voucher);
+                request.setAttribute("voucher", voucher);
+                rd = request.getRequestDispatcher("finishVoucher.jsp");
                 break;
             
             //Chamando formulários de alteração

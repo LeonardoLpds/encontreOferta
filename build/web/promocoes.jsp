@@ -64,6 +64,12 @@
                                 <image src="imagens/apagar.png" width="20" heigh="20">
                             </a>
                             <%
+                            } if(vendedor == null) {
+                            %>
+                                <a href="controle?acao=incluirVoucher&id=<%= promocao.getIdPromocao()%>">
+                                    Pegar Voucher
+                                </a>
+                            <%
                                 }
                             %>
                         </td>

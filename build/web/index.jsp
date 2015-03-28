@@ -69,6 +69,12 @@
                                 <image src="imagens/apagar.png" width="20" heigh="20">
                             </a>
                             <%
+                            } if(vendedor == null) {
+                            %>
+                                <a href="controle?acao=incluirVoucher&id=<%= promocao.getIdPromocao()%>">
+                                    Pegar Voucher
+                                </a>
+                            <%
                                 }
                             %>
                         </td>
@@ -80,35 +86,5 @@
                 </tbody>
             </table>
         </div> 
-        <!-- Lista todos os vouchers
-        <div class="boxBranco">
-          <h2>Vouchers:</h2>
-          <hr>
-          <table>
-            <thead>
-              <tr>
-                <th width="70">Voucher n&ordm;</th><th>Promoção</th><th width="70">Ação</th>
-                </tr>
-              </thead>
-            <tbody>
-        <%
-            VoucherService voucherService = new VoucherService();
-            List<Voucher> vouchers = voucherService.selecionarTodos();
-            if (vouchers != null) {
-                for (Voucher voucher : vouchers) {
-        %>
-      <tr>
-        <td align="center"><%= voucher.getIdVoucher()%></td>
-        <td><%= pd.selecionarPorId(voucher.getIdPromocao()).getTitulo()%></td>
-        <td align="center"><a href="controle?acao=excluirVoucher&numVoucher=<%= voucher.getIdVoucher()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
-        </tr>
-        <%
-                }
-            }
-        %>
-      </tbody>
-    </table>
-  <p><a href="controle?acao=formIncluirVoucher">Incluir voucher</a></p>
-</div> -->
     </body>
 </html>
