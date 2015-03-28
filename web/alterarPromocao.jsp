@@ -15,7 +15,7 @@
 
     </head>
     <body>
-        <%@ include file="header.html" %>
+        <%@ include file="header.jsp" %>
         <%
             Promocao promocao = (Promocao) request.getAttribute("promocao");
         %>

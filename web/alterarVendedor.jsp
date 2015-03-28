@@ -9,7 +9,7 @@
 
     </head>
     <body>
-        <%@ include file="header.html" %>
+        <%@ include file="header.jsp" %>
         <%
             Vendedor vendedor = (Vendedor) request.getAttribute("vendedor");
         %>

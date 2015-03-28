@@ -17,7 +17,7 @@
         <link href="estilos.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <%@ include file="header.html" %>
+        <%@ include file="header.jsp" %>
         <!-- Lista todas as ultimas promoções -->
         <div class="boxBranco">
             <h2>Ultimas Promoções:</h2>
@@ -31,6 +31,11 @@
                 </thead>
                 <tbody>
                     <%
+                        Vendedor vendedor = null;
+                        if(session.getAttribute("vendedor") != null){
+                            vendedor = (Vendedor) session.getAttribute("vendedor");
+                        }
+                        
                         CategoriaService categoriaService = new CategoriaService();
                         PromocaoDao pd = new PromocaoDao();
                         List<Promocao> promocoes = pd.selecionarTodos();
@@ -48,8 +53,20 @@
                         <td><%= promocao.getValor()%></td>
                         <td><%= promocao.getTempo()%></td>
                         <td><%= categoriaService.selecionarPorId(promocao.getIdCategoria()).getNome()%></td>
-                        <td align="center"><a href="controle?acao=formAlterarPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
-                            <a href="controle?acao=excluirPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
+                        <td align="center">
+                            <%
+                                if (vendedor != null && vendedor.getCnpj().equals(promocao.getCnpj())) {
+                            %>
+                            <a href="controle?acao=formAlterarPromocao&id=<%= promocao.getIdPromocao()%>">
+                                <image src="imagens/editar.png" width="20" heigh="20">
+                            </a>
+                            <a href="controle?acao=excluirPromocao&id=<%= promocao.getIdPromocao()%>">
+                                <image src="imagens/apagar.png" width="20" heigh="20">
+                            </a>
+                            <%
+                                }
+                            %>
+                        </td>
                     </tr>
                     <%
                             }

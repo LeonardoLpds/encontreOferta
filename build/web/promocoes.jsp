@@ -1,4 +1,5 @@
 
+<%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.encontreoferta.PromocaoDao"%>
 <%@page import="br.com.encontreoferta.Promocao"%>
@@ -12,7 +13,7 @@
         <link href="estilos.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <%@ include file="header.html" %>
+        <%@ include file="header.jsp" %>
         <div class="boxBranco">
             <h2>Todas as Promoções:</h2>
             <hr>
@@ -27,13 +28,13 @@
                     <%
                         List<Promocao> promocoes;
                         CategoriaService categoriaService = new CategoriaService();
-                        if(request.getAttribute("lista") == null){
+                        if (request.getAttribute("lista") == null) {
                             PromocaoDao pd = new PromocaoDao();
                             promocoes = pd.selecionarTodos();
-                        }else{
+                        } else {
                             promocoes = (List<Promocao>) request.getAttribute("lista");
                         }
-                        
+
                         if (promocoes != null) {
                             for (Promocao promocao : promocoes) {
                     %>
@@ -42,7 +43,12 @@
                         <td><%= promocao.getDescricao()%></td>
                         <td><%= promocao.getValor()%></td>
                         <td><%= promocao.getTempo()%></td>
-                        <td><%= categoriaService.selecionarPorId(promocao.getIdCategoria()).getNome()%></td>
+                        <% Categoria categoria = categoriaService.selecionarPorId(promocao.getIdCategoria());%>
+                        <td>
+                            <a href="controle?acao=verPromocoesPorCategoria&id=<%= categoria.getIdCategoria()%>">
+                                <%= categoria.getNome()%>
+                            </a>
+                        </td>
                         <td align="center"><a href="controle?acao=formAlterarPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
                             <a href="controle?acao=excluirPromocao&id=<%= promocao.getIdPromocao()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
                     </tr>

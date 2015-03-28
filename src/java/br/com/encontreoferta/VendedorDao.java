@@ -80,6 +80,28 @@ public class VendedorDao {
                 vendedor.getCnpj()
         ));
     }
+    
+    public Vendedor logar(String user, String pass){
+        if (this.conexao == null) {
+            this.conexao = new Conexao();
+        }
+        this.resultado = conexao.consultar("Select * from app.vendedor where login = '"+user+"' and senha = '"+pass+"'");
+        try{
+            if(resultado.next()){
+                Vendedor vendedor = new Vendedor(
+                        resultado.getString("cnpj"), resultado.getString("nomeFantasia"),
+                        resultado.getString("descricao"),
+                        resultado.getString("tel"), resultado.getString("endereco"),
+                        resultado.getString("email"), resultado.getString("login"),
+                        resultado.getString("senha")
+                );
+                return vendedor;
+            }
+            return null;
+        }catch(SQLException ex){
+            return null;
+        }
+    }
 
     public boolean apagar(Vendedor vendedor) {
         if (this.conexao == null) {

@@ -10,7 +10,7 @@
         <link href="estilos.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <%@ include file="header.html" %>
+        <%@ include file="header.jsp" %>
         <!-- Lista todos os vendedores -->
         <div class="boxBranco">
           <h2>Vendedores:</h2>

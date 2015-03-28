@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.jboss.weld.servlet.SessionHolder;
 
 @WebServlet(name = "Controle", urlPatterns = {"/controle"})
 public class Controle extends HttpServlet {
@@ -89,6 +90,15 @@ public class Controle extends HttpServlet {
                 break;
             case "formIncluirVoucher":
                 rd = request.getRequestDispatcher("incluirVoucher.jsp");
+                break;
+                
+            //Verificando produtos dependendo da categoria
+            case "verPromocoesPorCategoria":
+                id = Integer.parseInt(request.getParameter("id"));
+                List<Promocao> lista = new ArrayList<>();
+                lista = promocaoDao.selecionarPorCategoria(id);
+                rd = request.getRequestDispatcher("promocoes.jsp");
+                request.setAttribute("lista", lista);
                 break;
             
             //Executando ações de inclusão
@@ -220,16 +230,6 @@ public class Controle extends HttpServlet {
                 voucherDao.apagar(voucher);
                 break;
                 
-            //Verificando produtos dependendo da categoria
-            case "verPromocoesPorCategoria":
-                id = Integer.parseInt(request.getParameter("id"));
-                List<Promocao> lista = new ArrayList<>();
-                lista = promocaoDao.selecionarPorCategoria(id);
-                rd = request.getRequestDispatcher("promocoes.jsp");
-                request.setAttribute("lista", lista);
-                
-                break;
-                        
             case "default":
             default:
                 break;

@@ -8,7 +8,7 @@
 
     </head>
     <body>
-        <%@ include file="header.html" %>
+        <%@ include file="header.jsp" %>
         <div class="boxBranco">
             <h2>Incluir Vendedor</h2>
             <hr>

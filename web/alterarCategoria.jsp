@@ -10,7 +10,7 @@
 
     </head>
     <body>
-        <%@ include file="header.html" %>
+        <%@ include file="header.jsp" %>
         <%
             Categoria categoria = (Categoria) request.getAttribute("categoria");
         %>
