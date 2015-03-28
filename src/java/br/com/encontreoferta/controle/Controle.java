@@ -23,7 +23,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.jboss.weld.servlet.SessionHolder;
 
 @WebServlet(name = "Controle", urlPatterns = {"/controle"})
 public class Controle extends HttpServlet {
@@ -82,9 +81,6 @@ public class Controle extends HttpServlet {
             case "formIncluirCategoria":
                 rd = request.getRequestDispatcher("incluirCategoria.jsp");
                 break;
-            case "formIncluirVendedor":
-                rd = request.getRequestDispatcher("incluirVendedor.jsp");
-                break;
             case "formIncluirPromocao":
                 rd = request.getRequestDispatcher("incluirPromocao.jsp");
                 break;
@@ -109,6 +105,8 @@ public class Controle extends HttpServlet {
                 vendedor.setTelefone(request.getParameter("telefone"));
                 vendedor.setEndereco(request.getParameter("endereco"));
                 vendedor.setEmail(request.getParameter("email"));
+                vendedor.setLogin(request.getParameter("usuario"));
+                vendedor.setSenha(request.getParameter("senha"));
                 vendedorDao.inserir(vendedor);
                 rd = request.getRequestDispatcher("vendedores.jsp");
                 break;
@@ -205,6 +203,7 @@ public class Controle extends HttpServlet {
                 vendedor.setTelefone(request.getParameter("telefone"));
                 vendedor.setEndereco(request.getParameter("endereco"));
                 vendedor.setEmail(request.getParameter("email"));
+                vendedor.setLogin(request.getParameter("usuario"));
                 vendedorDao.alterar(vendedor);
                 rd = request.getRequestDispatcher("vendedores.jsp");
                 break;

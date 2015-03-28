@@ -19,6 +19,7 @@
             <form method="post" action="controle">
                 <input type="hidden" name="acao" value="alterarVendedor" />
                 <input type="hidden" name="cnpj" value="<%= vendedor.getCnpj()%>" />
+                <p><label>Nome de Usuário: <input type="text" name="usuario" value="<%= vendedor.getLogin()%>" required="true"></label></p>
                 <p><label>Nome Fantasia: <input type="text" name="nome" value="<%= vendedor.getNomeFantasia()%>" required="true"></label></p>
                 <p><label>Descrição: <input type="text" name="descricao" value="<%= vendedor.getDescricao()%>" required="true"></label></p>
                 <p><label>Telefone: <input type="text" name="telefone" value="<%= vendedor.getTelefone()%>" required="true"></label></p>

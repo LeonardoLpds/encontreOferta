@@ -59,7 +59,7 @@ public class VendedorDao {
             this.conexao = new Conexao();
         }
         return conexao.executar(String.format(
-                "Insert into app.vendedor(cnpj, nomeFantasia, descricao, tel, "
+                "Insert into app.vendedor(cnpj, nomeFantasia, descricao, tel,"
                 + "endereco, email, login, senha) values('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 vendedor.getCnpj(), vendedor.getNomeFantasia(), vendedor.getDescricao(),
                 vendedor.getTelefone(), vendedor.getEndereco(), vendedor.getEmail(),
@@ -73,10 +73,11 @@ public class VendedorDao {
         }
         return conexao.executar(String.format(
                 "Update app.vendedor set nomeFantasia = '%s', descricao = '%s', "
-                + "tel = '%s', endereco = '%s', email = '%s'"
+                + "tel = '%s', endereco = '%s', email = '%s', login = '%s'"
                 + " where cnpj = '%s'",
                 vendedor.getNomeFantasia(), vendedor.getDescricao(),
                 vendedor.getTelefone(), vendedor.getEndereco(), vendedor.getEmail(),
+                vendedor.getLogin(),
                 vendedor.getCnpj()
         ));
     }
