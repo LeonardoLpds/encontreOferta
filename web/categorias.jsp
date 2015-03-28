@@ -29,7 +29,11 @@
                             for (Categoria categoria : categorias) {
                     %>
                     <tr>
-                        <td><%= categoria.getNome()%></td>
+                        <td>
+                            <a href="controle?acao=verPromocoesPorCategoria&id=<%= categoria.getIdCategoria()%>">
+                                <%= categoria.getNome()%>
+                            </a>
+                        </td>
                         <td><%= categoria.getDescricao()%></td>
                         <td align="center"><a href="controle?acao=formAlterarCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
                             <a href="controle?acao=excluirCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>

@@ -31,7 +31,30 @@ public class PromocaoDao {
         }
     }
 
-    public List<Promocao> selecionarTodos(){
+    public List<Promocao> selecionarPorCategoria(int id) {
+        if (this.conexao == null) {
+            this.conexao = new Conexao();
+        }
+
+        this.resultado = conexao.consultar("Select * from app.promocao where idCategoria = " + id);
+        try {
+            List<Promocao> lista = new ArrayList<>();
+            while (resultado.next()) {
+                Promocao promocao = new Promocao(
+                        resultado.getInt("idPromocao"), resultado.getString("cnpj"), resultado.getInt("idCategoria"),
+                        resultado.getString("titulo"), resultado.getString("descricao"),
+                        resultado.getBigDecimal("valor"), resultado.getString("imagem"),
+                        resultado.getInt("quantidade"), resultado.getDate("tempo")
+                );
+                lista.add(promocao);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+
+    public List<Promocao> selecionarTodos() {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
@@ -83,11 +106,11 @@ public class PromocaoDao {
                 formato.format(promocao.getTempo()), promocao.getIdPromocao()
         ));
     }
-    
-    public boolean apagar(Promocao promocao){
+
+    public boolean apagar(Promocao promocao) {
         if (this.conexao == null) {
             this.conexao = new Conexao();
         }
-        return conexao.executar("delete from app.promocao where idPromocao = "+promocao.getIdPromocao());
+        return conexao.executar("delete from app.promocao where idPromocao = " + promocao.getIdPromocao());
     }
 }

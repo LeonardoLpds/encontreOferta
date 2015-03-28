@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -217,10 +219,24 @@ public class Controle extends HttpServlet {
                 voucher = voucherDao.selecionarPorNumeroDoVoucher(request.getParameter("numVoucher"));
                 voucherDao.apagar(voucher);
                 break;
+                
+            //Verificando produtos dependendo da categoria
+            case "verPromocoesPorCategoria":
+                id = Integer.parseInt(request.getParameter("id"));
+                List<Promocao> lista = new ArrayList<>();
+                lista = promocaoDao.selecionarPorCategoria(id);
+                rd = request.getRequestDispatcher("promocoes.jsp");
+                request.setAttribute("lista", lista);
+                
+                break;
+                        
             case "default":
             default:
                 break;
         }
+        
+        //Verificando produtos por categoria
+        
         
         //Redireciona o usuário conforme requisição
         rd.forward(request, response);

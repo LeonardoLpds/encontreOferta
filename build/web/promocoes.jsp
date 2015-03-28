@@ -25,9 +25,15 @@
                 </thead>
                 <tbody>
                     <%
+                        List<Promocao> promocoes;
                         CategoriaService categoriaService = new CategoriaService();
-                        PromocaoDao pd = new PromocaoDao();
-                        List<Promocao> promocoes = pd.selecionarTodos();
+                        if(request.getAttribute("lista") == null){
+                            PromocaoDao pd = new PromocaoDao();
+                            promocoes = pd.selecionarTodos();
+                        }else{
+                            promocoes = (List<Promocao>) request.getAttribute("lista");
+                        }
+                        
                         if (promocoes != null) {
                             for (Promocao promocao : promocoes) {
                     %>
