@@ -52,7 +52,12 @@
                         <td><%= promocao.getDescricao()%></td>
                         <td><%= promocao.getValor()%></td>
                         <td><%= promocao.getTempo()%></td>
-                        <td><%= categoriaService.selecionarPorId(promocao.getIdCategoria()).getNome()%></td>
+                        <% Categoria categoria = categoriaService.selecionarPorId(promocao.getIdCategoria());%>
+                        <td>
+                            <a href="controle?acao=verPromocoesPorCategoria&id=<%= categoria.getIdCategoria()%>">
+                                <%= categoria.getNome()%>
+                            </a>
+                        </td>
                         <td align="center">
                             <%
                                 if (vendedor != null && vendedor.getCnpj().equals(promocao.getCnpj())) {

@@ -24,16 +24,9 @@
                 <p><label>Vendedor: 
                         <select name="cnpj">
                             <%
-                                VendedorDao vd = new VendedorDao();
-                                List<Vendedor> vendedores = vd.selecionarTodos();
-                                if (vendedores != null) {
-                                    for (Vendedor vendedor : vendedores) {
+                                Vendedor vendedor = (Vendedor) session.getAttribute("vendedor");
                             %>
                             <option value="<%= vendedor.getCnpj()%>"><%= vendedor.getNomeFantasia()%></option>
-                            <%
-                                    }
-                                }
-                            %>
                         </select>
                     </label></p>
                 <p><label>Nome da imagem: <input type="text" name="imagem" required="true"></label></p>
