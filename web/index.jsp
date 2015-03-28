@@ -74,7 +74,6 @@
                     %>
                 </tbody>
             </table>
-            <p><a href="controle?acao=formIncluirPromocao">Incluir promoção</a></p>
         </div> 
         <!-- Lista todos os vouchers
         <div class="boxBranco">

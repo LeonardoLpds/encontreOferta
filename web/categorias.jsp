@@ -1,3 +1,4 @@
+<%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.encontreoferta.CategoriaService"%>
@@ -11,6 +12,11 @@
     </head>
     <body>
         <%@ include file="header.jsp" %>
+        <%            Vendedor vendedor = null;
+            if (session.getAttribute("vendedor") != null) {
+                vendedor = (Vendedor) session.getAttribute("vendedor");
+            }
+        %>
         <!-- Lista todas as categorias -->
         <div class="boxBranco">
             <h2>Categorias:</h2>
@@ -35,8 +41,20 @@
                             </a>
                         </td>
                         <td><%= categoria.getDescricao()%></td>
-                        <td align="center"><a href="controle?acao=formAlterarCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/editar.png" width="20" heigh="20"></a>
-                            <a href="controle?acao=excluirCategoria&id=<%= categoria.getIdCategoria()%>"><image src="imagens/apagar.png" width="20" heigh="20"></a></td>
+                        <td align="center">
+                            <%
+                                if (vendedor != null) {
+                            %>
+                            <a href="controle?acao=formAlterarCategoria&id=<%= categoria.getIdCategoria()%>">
+                                <image src="imagens/editar.png" width="20" heigh="20">
+                            </a>
+                            <a href="controle?acao=excluirCategoria&id=<%= categoria.getIdCategoria()%>">
+                                <image src="imagens/apagar.png" width="20" heigh="20">
+                            </a>
+                            <%
+                                }
+                            %>
+                        </td>
                     </tr>
                     <%
                             }
@@ -44,7 +62,13 @@
                     %>
                 </tbody>
             </table>
+            <%
+                if (vendedor != null) {
+            %>
             <p><a href="controle?acao=formIncluirCategoria">Incluir categoria</a></p>
+            <%
+                }
+            %>
         </div>
     </body>
 </html>
