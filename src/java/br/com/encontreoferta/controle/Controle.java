@@ -101,10 +101,15 @@ public class Controle extends HttpServlet {
                 vendedor.setEmail(request.getParameter("email"));
                 vendedor.setLogin(request.getParameter("usuario"));
                 vendedor.setSenha(request.getParameter("senha"));
-                vendedorService.inserir(vendedor);
-                rd = request.getRequestDispatcher("vendedores.jsp");
+                boolean result = vendedorService.inserir(vendedor);
+                if(result){
+                    rd = request.getRequestDispatcher("vendedores.jsp");
+                    break;
+                }
+                String error = "Falha ao cadastrar, CNPJ ou Nome de usuário já estão em uso";
+                request.setAttribute("error", error);
+                rd = request.getRequestDispatcher("loginOuCadastro.jsp");
                 break;
-                
             case "incluirCategoria":
                 categoria.setNome(request.getParameter("nome"));
                 categoria.setDescricao(request.getParameter("descricao"));

@@ -37,6 +37,15 @@
 
             </div>
             <div class="boxright">
+                <%
+                    if(request.getAttribute("error") != null){
+                %>
+                <div class="alertaErro">
+                    <%= request.getAttribute("error")%>
+                </div>
+                <%
+                    }
+                %>
                 <h2>Cadastro</h2>
                 <form method="post" action="controle">
                     <input type="hidden" name="acao" value="incluirVendedor" />
