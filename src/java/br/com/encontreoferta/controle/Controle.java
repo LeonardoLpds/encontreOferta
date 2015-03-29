@@ -6,7 +6,6 @@ import br.com.encontreoferta.Promocao;
 import br.com.encontreoferta.PromocaoDao;
 import br.com.encontreoferta.PromocaoService;
 import br.com.encontreoferta.Vendedor;
-import br.com.encontreoferta.VendedorDao;
 import br.com.encontreoferta.VendedorService;
 import br.com.encontreoferta.Voucher;
 import br.com.encontreoferta.VoucherService;
@@ -27,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Controle", urlPatterns = {"/controle"})
 public class Controle extends HttpServlet {
-    private Object promocaoDao;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,8 +64,6 @@ public class Controle extends HttpServlet {
         VoucherService voucherService = new VoucherService();
         PromocaoService promocaoService = new PromocaoService();
         VendedorService vendedorService = new VendedorService();
-        PromocaoDao promocaoDao = new PromocaoDao();
-        VendedorDao vendedorDao = new VendedorDao();
         
         //Declarando variavel que definira a ação a ser tomada
         String acao = request.getParameter("acao");
@@ -128,7 +124,7 @@ public class Controle extends HttpServlet {
                     promocao.setImagem(request.getParameter("imagem"));
                     promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
                     promocao.setTempo(formato.parse(request.getParameter("tempo")));
-                    promocaoDao.inserir(promocao);
+                    promocaoService.inserir(promocao);
                     rd = request.getRequestDispatcher("promocoes.jsp");
                 } catch (ParseException ex) {
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,7 +178,7 @@ public class Controle extends HttpServlet {
                     promocao.setImagem(request.getParameter("imagem"));
                     promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
                     promocao.setTempo(formato.parse(request.getParameter("tempo")));
-                    promocaoDao.alterar(promocao);
+                    promocaoService.alterar(promocao);
                     rd = request.getRequestDispatcher("promocoes.jsp");
                 } catch (ParseException ex){
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
@@ -207,7 +203,7 @@ public class Controle extends HttpServlet {
                 vendedor.setEndereco(request.getParameter("endereco"));
                 vendedor.setEmail(request.getParameter("email"));
                 vendedor.setLogin(request.getParameter("usuario"));
-                vendedorDao.alterar(vendedor);
+                vendedorService.alterar(vendedor);
                 rd = request.getRequestDispatcher("vendedores.jsp");
                 break;
                 
@@ -219,7 +215,8 @@ public class Controle extends HttpServlet {
                 break;
             case "excluirPromocao":
                 id = Integer.parseInt(request.getParameter("id"));
-                promocaoService.apagar(id);
+                promocao = promocaoService.selecionarPorId(id);
+                promocaoService.apagar(promocao);
                 break;
             case "excluirVendedor":
                 cnpj = request.getParameter("cnpj");

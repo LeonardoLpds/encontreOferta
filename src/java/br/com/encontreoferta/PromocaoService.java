@@ -7,15 +7,6 @@ import java.util.List;
 public class PromocaoService {
 
     private PromocaoDao dao;
-    int idPromocao = 0;
-    String cnpj = "";
-    int idCategoria = 0;
-    String titulo = "";
-    String descricao = "";
-    BigDecimal valor;
-    String imagem = "";
-    int quantidade = 0;
-    Date dataMinima = new Date();
 
     public PromocaoService() {
         this.dao = new PromocaoDao();
@@ -36,155 +27,44 @@ public class PromocaoService {
             return lista;
     }
 
-    public boolean inserir(Promocao promo) {
-        int idPromocao = promo.getIdPromocao();
-        String cnpj = promo.getCnpj();
-        int idCategoria = promo.getIdCategoria();
-        String titulo = promo.getTitulo();
-        String descricao = promo.getDescricao();
-        BigDecimal valor = promo.getValor();
-        String imagem = promo.getImagem();
-        int quantidade = promo.getQuantidade();
-        Date tempo = promo.getTempo();
+    public boolean inserir(Promocao promocao) {
         
-        dao = new PromocaoDao();
-        Promocao promocao = new Promocao();
-        if (idCategoria <= 0) {
+        if(
+                promocao.getCnpj().equals("") ||
+                promocao.getDescricao().equals("") ||
+                promocao.getIdCategoria() <= 0 ||
+                promocao.getImagem().equals("") ||
+                promocao.getQuantidade() <= 0 ||
+                promocao.getTempo().getTime() <= new Date().getTime() ||
+                promocao.getTitulo().equals("") ||
+                promocao.getValor().compareTo(BigDecimal.ZERO) < 0
+        ){
             return false;
-        } else {
-            promocao.setIdCategoria(idCategoria);
         }
-
-        if (cnpj.equals("")) {
-            return false;
-        } else {
-            promocao.setCnpj(cnpj);
-        }
-        if (descricao.equals("")) {
-            return false;
-        } else {
-            promocao.setDescricao(descricao);
-        }
-        if (idPromocao == 0 || idPromocao <= 0) {
-            return false;
-        } else {
-            promocao.setIdPromocao(idPromocao);
-        }
-
-        if (imagem.equals("")) {
-            return false;
-        } else {
-            promocao.setImagem(imagem);
-        }
-        if (quantidade <= 0) {
-            return false;
-        } else {
-            promocao.setQuantidade(quantidade);
-        }
-        if (tempo.getTime() < dataMinima.getTime()) {
-            return false;
-        } else {
-            promocao.setTempo(tempo);
-        }
-        if (titulo.equals("")) {
-            return false;
-        } else {
-            promocao.setTitulo(titulo);
-        }
-        
-        if(valor.compareTo(BigDecimal.ZERO) < 0){
-            return false;
-        }else{
-            promocao.setValor(valor);
-        }
-        
-        dao.inserir(promocao);
-        return true;
+        return dao.inserir(promocao);
 
     }
 
-    public boolean alterar(Promocao promo) {
+    public boolean alterar(Promocao promocao) {
         
-        int idPromocao = promo.getIdPromocao();
-        String cnpj = promo.getCnpj();
-        int idCategoria = promo.getIdCategoria();
-        String titulo = promo.getTitulo();
-        String descricao = promo.getDescricao();
-        BigDecimal valor = promo.getValor();
-        String imagem = promo.getImagem();
-        int quantidade = promo.getQuantidade();
-        Date tempo = promo.getTempo();
-        
-        dao = new PromocaoDao();
-        Promocao promocao1 = new Promocao();
-        Categoria categoria = new Categoria();
-        if (idCategoria <= 0) {
+        if(
+                promocao.getCnpj().equals("") ||
+                promocao.getDescricao().equals("") ||
+                promocao.getIdCategoria() <= 0 ||
+                promocao.getIdPromocao() <= 0 ||
+                promocao.getImagem().equals("") ||
+                promocao.getQuantidade() <= 0 ||
+                promocao.getTempo().getTime() <= new Date().getTime() ||
+                promocao.getTitulo().equals("") ||
+                promocao.getValor().compareTo(BigDecimal.ZERO) > 0
+        ){
             return false;
-        } else {
-            promocao1.setIdCategoria(categoria.getIdCategoria());
         }
+        return dao.alterar(promocao);
 
-        if (cnpj.equals("") || cnpj.length() != 14) {
-            return false;
-        } else {
-            promocao1.setCnpj(cnpj);
-        }
-        if (descricao.equals("")) {
-            return false;
-        } else {
-            promocao1.setDescricao(descricao);
-        }
-        if (idPromocao == 0 || idPromocao <= 0) {
-            return false;
-        } else {
-            promocao1.setIdPromocao(idPromocao);
-        }
-
-        if (imagem.equals("")) {
-            return false;
-        } else {
-            promocao1.setImagem(imagem);
-        }
-        if (quantidade <= 0) {
-            return false;
-        } else {
-            promocao1.setQuantidade(quantidade);
-        }
-        if (tempo.getTime() < dataMinima.getTime()) {
-            return false;
-        } else {
-            promocao1.setTempo(tempo);
-        }
-        if (titulo.equals("")) {
-            return false;
-        } else {
-            promocao1.setTitulo(titulo);
-        }
-        
-        if(valor.compareTo(BigDecimal.ZERO) < 0){
-            return false;
-        }else{
-            promocao1.setValor(valor);
-        }
-
-        dao.alterar(promocao1);
-        return true;
     }
 
-    public void apagar(int idPromocao) {
-        
-        dao = new PromocaoDao();
-        Promocao promocao = new Promocao();
-        promocao.setIdPromocao(idPromocao);
-        promocao.setCnpj("");
-        promocao.setDescricao("");
-        promocao.setIdCategoria(0);
-        promocao.setImagem("");
-        promocao.setQuantidade(0);
-        promocao.setTempo(dataMinima);
-        promocao.setTitulo("");
-        promocao.setValor(BigDecimal.ZERO);
-        
-        dao.apagar(promocao);
+    public boolean apagar(Promocao promocao) {
+        return dao.apagar(promocao);
     }
 }

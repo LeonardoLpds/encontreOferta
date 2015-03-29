@@ -1,26 +1,14 @@
 package br.com.encontreoferta;
 
+import java.math.BigDecimal;
 import java.util.List;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 public class VendedorService {
 
-    private VendedorDao dao;
+    private final VendedorDao dao;
 
     public VendedorService() {
         this.dao = new VendedorDao();
-    }
-
-    public static boolean isValidEmailAddress(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            result = false;
-        }
-        return result;
     }
 
     public Vendedor selecionarPorCnpj(String cnpj) {
@@ -33,149 +21,45 @@ public class VendedorService {
         return lista;
     }
 
-    public boolean inserir(Vendedor vend) {
-
-        String cnpj = vend.getCnpj();
-        String nomeFantasia = vend.getNomeFantasia();
-        String descricao = vend.getDescricao();
-        String telefone = vend.getTelefone();
-        String endereco = vend.getEndereco();
-        String email = vend.getEmail();
-        String login = vend.getLogin();
-        String senha = vend.getSenha();
-
-        dao = new VendedorDao();
-        Vendedor vendedor = new Vendedor();
-
-        if (cnpj.equals("")) {
-            return false;
-        } else {
-            vendedor.setCnpj(cnpj);
-        }
-        if (nomeFantasia.equals("")) {
-            return false;
-        } else {
-            vendedor.setNomeFantasia(nomeFantasia);
-        }
-        if (descricao.equals("")) {
-            return false;
-        } else {
-            vendedor.setDescricao(descricao);
-        }
-
-        if (telefone.equals("")) {
-            return false;
-        } else {
-            vendedor.setTelefone(telefone);
-        }
-        if (endereco.equals("")) {
-            return false;
-        } else {
-            vendedor.setEndereco(endereco);
-        }
-
-        if (isValidEmailAddress(email)) {
-            vendedor.setEmail(email);
-        } else {
+    public boolean inserir(Vendedor vendedor) {
+        if(
+                vendedor.getCnpj().equals("") ||
+                vendedor.getDescricao().equals("") ||
+                vendedor.getEmail().equals("") ||
+                vendedor.getEndereco().equals("") ||
+                vendedor.getLogin().equals("") ||
+                vendedor.getSenha().equals("") ||
+                vendedor.getNomeFantasia().equals("")
+        ){
             return false;
         }
-
-        if (login.equals("")) {
-            return false;
-        } else {
-            vendedor.setLogin(login);
-        }
-
-        if (senha.equals("")) {
-            return false;
-        } else {
-            vendedor.setSenha(senha);
-        }
-
-        dao.inserir(vendedor);
-
-        return true;
-
+        return dao.inserir(vendedor);
     }
 
-    public boolean alterar(Vendedor vend) {
-
-        String cnpj = vend.getCnpj();
-        String nomeFantasia = vend.getNomeFantasia();
-        String descricao = vend.getDescricao();
-        String telefone = vend.getTelefone();
-        String endereco = vend.getEndereco();
-        String email = vend.getEmail();
-        String login = vend.getLogin();
-        String senha = vend.getSenha();
-
-        dao = new VendedorDao();
-        Vendedor vendedor = new Vendedor();
-
-        if (cnpj.equals("")) {
-            return false;
-        } else {
-            vendedor.setCnpj(cnpj);
-        }
-        if (nomeFantasia.equals("")) {
-            return false;
-        } else {
-            vendedor.setNomeFantasia(nomeFantasia);
-        }
-        if (descricao.equals("")) {
-            return false;
-        } else {
-            vendedor.setDescricao(descricao);
-        }
-
-        if (telefone.equals("")) {
-            return false;
-        } else {
-            vendedor.setTelefone(telefone);
-        }
-        if (endereco.equals("")) {
-            return false;
-        } else {
-            vendedor.setEndereco(endereco);
-        }
-
-        if (isValidEmailAddress(email)) {
-            vendedor.setEmail(email);
-        } else {
+    public boolean alterar(Vendedor vendedor) {
+        if(
+                vendedor.getCnpj().equals("") ||
+                vendedor.getDescricao().equals("") ||
+                vendedor.getEmail().equals("") ||
+                vendedor.getEndereco().equals("") ||
+                vendedor.getLogin().equals("") ||
+                vendedor.getSenha().equals("") ||
+                vendedor.getNomeFantasia().equals("") ||
+                vendedor.getTelefone().equals("")
+        ){
             return false;
         }
-
-        if (login.equals("")) {
-            return false;
-        } else {
-            vendedor.setLogin(login);
-        }
-
-        if (senha.equals("")) {
-            return false;
-        } else {
-            vendedor.setSenha(senha);
-        }
-
-        dao.alterar(vendedor);
-
-        return true;
-
+        return dao.alterar(vendedor);
     }
 
-    public void apagar(Vendedor vendedor) {
-
-        dao = new VendedorDao();
-        Vendedor vendedor1 = new Vendedor();
-        vendedor1.setCnpj("");
-        vendedor1.setDescricao("");
-        vendedor1.setEmail("");
-        vendedor1.setEndereco("");
-        vendedor1.setNomeFantasia("");
-        vendedor1.setTelefone("");
-        vendedor1.setLogin("");
-        vendedor1.setSenha("");
-
-        dao.apagar(vendedor);
+    public boolean apagar(Vendedor vendedor) {
+        return dao.apagar(vendedor);
+    }
+    
+    public Vendedor logar(String user, String pass){
+        if(user.equals("") || pass.equals("")){
+            return null;
+        }
+        return dao.logar(user, pass);
     }
 }

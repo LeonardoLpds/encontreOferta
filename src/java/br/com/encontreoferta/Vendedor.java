@@ -3,14 +3,14 @@ import java.io.Serializable;
 
 public class Vendedor implements Serializable{
 
-    String cnpj;
-    String nomeFantasia;
-    String descricao;
-    String telefone;
-    String endereco;
-    String email;
-    String login;
-    String senha;
+    private String cnpj;
+    private String nomeFantasia;
+    private String descricao;
+    private String telefone;
+    private String endereco;
+    private String email;
+    private String login;
+    private String senha;
 
     public Vendedor() {
     }
