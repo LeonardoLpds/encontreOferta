@@ -26,5 +26,4 @@
             </form>
         </div>
     </body>
-    <%@ include file="footer.html" %>
 </html>

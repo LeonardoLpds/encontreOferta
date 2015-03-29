@@ -18,6 +18,5 @@
                 O número do seu voucher é <%= voucher.getIdVoucher() %>
             </p>
         </div>
-        <%@ include file="footer.html" %>
     </body>
 </html>

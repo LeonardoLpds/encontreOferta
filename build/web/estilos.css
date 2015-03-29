@@ -57,7 +57,7 @@ body{
     border-radius:15px;
     width:95%;
     padding:5px 15px;
-    border-bottom: 3px solid #9bd8d7;
+    border-bottom: 3px solid #9bd8d7;    
 }
 
 hr {
@@ -74,6 +74,9 @@ h1{
     font-size: 35px;
     margin: 10px 5px;
     text-align: center;
+}
+header h1{       
+    float: left;
 }
 h2{
     color:#ff9c00;
@@ -150,7 +153,7 @@ p a:active{
     color: #fff;
     border-bottom: 2px solid #b36d00;
 }
-input[type="text"], textarea, select, input[type="number"], input[type="date"], input[type="email"]{
+input[type="text"], textarea, select, input[type="number"], input[type="date"], input[type="email"], input[type="password"]{
     border:1px solid #c2e4e3;
     border-bottom: 2px solid #c2e4e3;
     border-radius: 5px;
@@ -169,4 +172,48 @@ label{
 }
 footer{
     text-align: center;
+}
+nav{
+    display: block;
+    float: right;
+    position: relative;
+    bottom:-10px;
+}
+nav ul li{
+    display: block;
+    float: left;
+    padding: 3px 15px;
+    border-right: 2px solid #c2e4e3;    
+}
+li.ultimolink{
+    border-right: none; 
+}
+.clear{
+    height: 0px;
+    clear: both;
+}
+.boxleft{
+    margin-top:15px;
+    width: 46%;
+    float: left;    
+    padding-left: 25px;
+    height: 550px;
+}
+.boxright{
+    margin:15px auto; 
+    width: 46%;
+    float: right;
+    border-left: 2px dotted #c2e4e3;
+    padding-left: 45px;
+    height: 550px;
+}
+.alertaErro{
+    border: 1px solid #ff9c00;
+    margin-top: 15px;
+    width: 310px;
+    padding: 15px 0;
+    border-radius: 5px;
+    text-align: center;
+    color: #ff9c00;
+    font-weight: bold;
 }

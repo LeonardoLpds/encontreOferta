@@ -19,6 +19,5 @@
                 <p><input type="submit" value="incluir"></p>     
             </form>
         </div>
-        <%@ include file="footer.html" %>
     </body>
 </html>

@@ -28,6 +28,5 @@
                 <p><input type="submit" value="Alterar"></p>
             </form>
         </div>
-        <%@ include file="footer.html" %>
     </body>
 </html>
