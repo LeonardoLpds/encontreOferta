@@ -3,6 +3,7 @@ package br.com.encontreoferta.controle;
 import br.com.encontreoferta.Categoria;
 import br.com.encontreoferta.CategoriaService;
 import br.com.encontreoferta.Promocao;
+import br.com.encontreoferta.PromocaoDao;
 import br.com.encontreoferta.PromocaoService;
 import br.com.encontreoferta.Vendedor;
 import br.com.encontreoferta.VendedorService;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Controle", urlPatterns = {"/controle"})
 public class Controle extends HttpServlet {
+    private Object promocaoDao;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -123,8 +125,8 @@ public class Controle extends HttpServlet {
                     promocao.setImagem(request.getParameter("imagem"));
                     promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
                     promocao.setTempo(formato.parse(request.getParameter("tempo")));
-                    
-                    promocaoService.inserir(promocao);
+                    PromocaoDao promocaoDao = new PromocaoDao();
+                    promocaoDao.inserir(promocao);
                     rd = request.getRequestDispatcher("promocoes.jsp");
                 } catch (ParseException ex) {
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);

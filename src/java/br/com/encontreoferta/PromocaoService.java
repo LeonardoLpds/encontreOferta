@@ -49,14 +49,13 @@ public class PromocaoService {
         
         dao = new PromocaoDao();
         Promocao promocao = new Promocao();
-        Categoria categoria = new Categoria();
         if (idCategoria <= 0) {
             return false;
         } else {
-            promocao.setIdCategoria(categoria.getIdCategoria());
+            promocao.setIdCategoria(idCategoria);
         }
 
-        if (cnpj.equals("") || cnpj.length() != 14) {
+        if (cnpj.equals("")) {
             return false;
         } else {
             promocao.setCnpj(cnpj);
