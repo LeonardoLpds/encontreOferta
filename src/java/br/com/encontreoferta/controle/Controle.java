@@ -6,6 +6,7 @@ import br.com.encontreoferta.Promocao;
 import br.com.encontreoferta.PromocaoDao;
 import br.com.encontreoferta.PromocaoService;
 import br.com.encontreoferta.Vendedor;
+import br.com.encontreoferta.VendedorDao;
 import br.com.encontreoferta.VendedorService;
 import br.com.encontreoferta.Voucher;
 import br.com.encontreoferta.VoucherService;
@@ -65,6 +66,8 @@ public class Controle extends HttpServlet {
         VoucherService voucherService = new VoucherService();
         PromocaoService promocaoService = new PromocaoService();
         VendedorService vendedorService = new VendedorService();
+        PromocaoDao promocaoDao = new PromocaoDao();
+        VendedorDao vendedorDao = new VendedorDao();
         
         //Declarando variavel que definira a ação a ser tomada
         String acao = request.getParameter("acao");
@@ -125,7 +128,6 @@ public class Controle extends HttpServlet {
                     promocao.setImagem(request.getParameter("imagem"));
                     promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
                     promocao.setTempo(formato.parse(request.getParameter("tempo")));
-                    PromocaoDao promocaoDao = new PromocaoDao();
                     promocaoDao.inserir(promocao);
                     rd = request.getRequestDispatcher("promocoes.jsp");
                 } catch (ParseException ex) {
@@ -180,7 +182,7 @@ public class Controle extends HttpServlet {
                     promocao.setImagem(request.getParameter("imagem"));
                     promocao.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
                     promocao.setTempo(formato.parse(request.getParameter("tempo")));
-                    promocaoService.alterar(promocao);
+                    promocaoDao.alterar(promocao);
                     rd = request.getRequestDispatcher("promocoes.jsp");
                 } catch (ParseException ex){
                     Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,7 +207,7 @@ public class Controle extends HttpServlet {
                 vendedor.setEndereco(request.getParameter("endereco"));
                 vendedor.setEmail(request.getParameter("email"));
                 vendedor.setLogin(request.getParameter("usuario"));
-                vendedorService.alterar(vendedor);
+                vendedorDao.alterar(vendedor);
                 rd = request.getRequestDispatcher("vendedores.jsp");
                 break;
                 

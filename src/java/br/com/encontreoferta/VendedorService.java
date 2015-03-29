@@ -112,7 +112,7 @@ public class VendedorService {
         dao = new VendedorDao();
         Vendedor vendedor = new Vendedor();
 
-        if (cnpj.equals("") || cnpj.length() != 14) {
+        if (cnpj.equals("")) {
             return false;
         } else {
             vendedor.setCnpj(cnpj);
