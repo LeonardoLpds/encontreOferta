@@ -1,5 +1,4 @@
 <%@page import="br.com.encontreoferta.Vendedor"%>
-<%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.encontreoferta.CategoriaService"%>

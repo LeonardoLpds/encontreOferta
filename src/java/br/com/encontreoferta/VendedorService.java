@@ -6,16 +6,13 @@ import javax.mail.internet.InternetAddress;
 
 public class VendedorService {
 
-    
     private VendedorDao dao;
 
-    
-    
     public VendedorService() {
         this.dao = new VendedorDao();
     }
-    
-            public static boolean isValidEmailAddress(String email) {
+
+    public static boolean isValidEmailAddress(String email) {
         boolean result = true;
         try {
             InternetAddress emailAddr = new InternetAddress(email);
@@ -26,8 +23,7 @@ public class VendedorService {
         return result;
     }
 
-
-    public Vendedor selecionarVendedor(String cnpj) {
+    public Vendedor selecionarPorCnpj(String cnpj) {
         Vendedor vendedor = dao.selecionarPorCnpj(cnpj);
         return vendedor;
     }
@@ -37,8 +33,16 @@ public class VendedorService {
         return lista;
     }
 
-    public boolean inserir(String cnpj, String nomeFantasia, String descricao, String telefone, String endereco,
-            String email, String login, String senha) {
+    public boolean inserir(Vendedor vend) {
+
+        String cnpj = vend.getCnpj();
+        String nomeFantasia = vend.getNomeFantasia();
+        String descricao = vend.getDescricao();
+        String telefone = vend.getTelefone();
+        String endereco = vend.getEndereco();
+        String email = vend.getEmail();
+        String login = vend.getLogin();
+        String senha = vend.getSenha();
 
         dao = new VendedorDao();
         Vendedor vendedor = new Vendedor();
@@ -69,36 +73,41 @@ public class VendedorService {
         } else {
             vendedor.setEndereco(endereco);
         }
-        
-        if(isValidEmailAddress(email)){
-        vendedor.setEmail(email);
-        }else{
+
+        if (isValidEmailAddress(email)) {
+            vendedor.setEmail(email);
+        } else {
             return false;
         }
 
-
-    if (login.equals ("")) {
+        if (login.equals("")) {
             return false;
-    }
-        else {
+        } else {
             vendedor.setLogin(login);
-    }
+        }
 
-    if(senha.equals("")){
+        if (senha.equals("")) {
             return false;
-    }
-    else{
+        } else {
             vendedor.setSenha(senha);
+        }
+
+        dao.inserir(vendedor);
+
+        return true;
+
     }
 
-    dao.inserir (vendedor);
+    public boolean alterar(Vendedor vend) {
 
-return true;
-
-    }
-
-   public boolean alterar(String cnpj, String nomeFantasia, String descricao, String telefone, String endereco,
-            String email, String login, String senha) {
+        String cnpj = vend.getCnpj();
+        String nomeFantasia = vend.getNomeFantasia();
+        String descricao = vend.getDescricao();
+        String telefone = vend.getTelefone();
+        String endereco = vend.getEndereco();
+        String email = vend.getEmail();
+        String login = vend.getLogin();
+        String senha = vend.getSenha();
 
         dao = new VendedorDao();
         Vendedor vendedor = new Vendedor();
@@ -129,36 +138,33 @@ return true;
         } else {
             vendedor.setEndereco(endereco);
         }
-        
-        if(isValidEmailAddress(email)){
-        vendedor.setEmail(email);
-        }else{
+
+        if (isValidEmailAddress(email)) {
+            vendedor.setEmail(email);
+        } else {
             return false;
         }
 
-
-    if (login.equals ("")) {
+        if (login.equals("")) {
             return false;
-    }
-        else {
+        } else {
             vendedor.setLogin(login);
-    }
+        }
 
-    if(senha.equals("")){
+        if (senha.equals("")) {
             return false;
-    }
-    else{
+        } else {
             vendedor.setSenha(senha);
-    }
+        }
 
-    dao.alterar (vendedor);
+        dao.alterar(vendedor);
 
-return true;
+        return true;
 
     }
 
     public void apagar(Vendedor vendedor) {
-        
+
         dao = new VendedorDao();
         Vendedor vendedor1 = new Vendedor();
         vendedor1.setCnpj("");
@@ -169,7 +175,7 @@ return true;
         vendedor1.setTelefone("");
         vendedor1.setLogin("");
         vendedor1.setSenha("");
-        
+
         dao.apagar(vendedor);
     }
 }

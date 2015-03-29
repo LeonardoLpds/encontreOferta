@@ -1,11 +1,10 @@
+<%@page import="br.com.encontreoferta.PromocaoService"%>
 <%@page import="br.com.encontreoferta.VoucherService"%>
 <%@page import="br.com.encontreoferta.Voucher"%>
 <%@page import="br.com.encontreoferta.CategoriaService"%>
 <%@page import="br.com.encontreoferta.Vendedor"%>
-<%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="br.com.encontreoferta.CategoriaService"%>
-<%@page import="br.com.encontreoferta.PromocaoDao"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.encontreoferta.Promocao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,8 +36,8 @@
                         }
                         
                         CategoriaService categoriaService = new CategoriaService();
-                        PromocaoDao pd = new PromocaoDao();
-                        List<Promocao> promocoes = pd.selecionarTodos();
+                        PromocaoService promocaoService = new PromocaoService();
+                        List<Promocao> promocoes = promocaoService.selecionarTodos();
                         if (promocoes != null) {
                             int limit = 3;
                             if (promocoes.size() < 3) {

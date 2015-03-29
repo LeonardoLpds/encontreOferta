@@ -1,8 +1,8 @@
 
+<%@page import="br.com.encontreoferta.PromocaoService"%>
 <%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="java.util.List"%>
-<%@page import="br.com.encontreoferta.PromocaoDao"%>
 <%@page import="br.com.encontreoferta.Promocao"%>
 <%@page import="br.com.encontreoferta.CategoriaService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -33,7 +33,7 @@
                     <%                        List<Promocao> promocoes;
                         CategoriaService categoriaService = new CategoriaService();
                         if (request.getAttribute("lista") == null) {
-                            PromocaoDao pd = new PromocaoDao();
+                            PromocaoService pd = new PromocaoService();
                             promocoes = pd.selecionarTodos();
                         } else {
                             promocoes = (List<Promocao>) request.getAttribute("lista");

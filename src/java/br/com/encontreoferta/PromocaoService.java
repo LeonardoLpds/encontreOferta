@@ -30,10 +30,23 @@ public class PromocaoService {
         List<Promocao> lista = dao.selecionarTodos();
         return lista;
     }
+    
+    public List<Promocao> selecionarPorCategoria(int id) {
+            List<Promocao> lista = dao.selecionarPorCategoria(id);
+            return lista;
+    }
 
-    public boolean inserir(int idPromocao, String cnpj, int idCategoria, String titulo, String descricao,
-        BigDecimal valor, String imagem, int quantidade, Date tempo) {
-
+    public boolean inserir(Promocao promo) {
+        int idPromocao = promo.getIdPromocao();
+        String cnpj = promo.getCnpj();
+        int idCategoria = promo.getIdCategoria();
+        String titulo = promo.getTitulo();
+        String descricao = promo.getDescricao();
+        BigDecimal valor = promo.getValor();
+        String imagem = promo.getImagem();
+        int quantidade = promo.getQuantidade();
+        Date tempo = promo.getTempo();
+        
         dao = new PromocaoDao();
         Promocao promocao = new Promocao();
         Categoria categoria = new Categoria();
@@ -91,8 +104,18 @@ public class PromocaoService {
 
     }
 
-    public boolean alterar(int idPromocao, String cnpj, int idCategoria, String titulo, String descricao,
-            BigDecimal valor, String imagem, int quantidade, Date tempo) {
+    public boolean alterar(Promocao promo) {
+        
+        int idPromocao = promo.getIdPromocao();
+        String cnpj = promo.getCnpj();
+        int idCategoria = promo.getIdCategoria();
+        String titulo = promo.getTitulo();
+        String descricao = promo.getDescricao();
+        BigDecimal valor = promo.getValor();
+        String imagem = promo.getImagem();
+        int quantidade = promo.getQuantidade();
+        Date tempo = promo.getTempo();
+        
         dao = new PromocaoDao();
         Promocao promocao1 = new Promocao();
         Categoria categoria = new Categoria();

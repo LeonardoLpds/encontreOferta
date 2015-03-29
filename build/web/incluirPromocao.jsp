@@ -2,7 +2,6 @@
 <%@page import="br.com.encontreoferta.Categoria"%>
 <%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="java.util.List"%>
-<%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

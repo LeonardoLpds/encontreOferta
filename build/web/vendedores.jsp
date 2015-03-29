@@ -1,6 +1,6 @@
+<%@page import="br.com.encontreoferta.VendedorService"%>
 <%@page import="br.com.encontreoferta.Vendedor"%>
 <%@page import="java.util.List"%>
-<%@page import="br.com.encontreoferta.VendedorDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                     <%
-                        VendedorDao vd = new VendedorDao();
+                        VendedorService vd = new VendedorService();
                         List<Vendedor> vendedores = vd.selecionarTodos();
                         if (vendedores != null) {
                             for (Vendedor vendedor : vendedores) {
