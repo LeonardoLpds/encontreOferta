@@ -49,14 +49,14 @@
                 <h2>Cadastro</h2>
                 <form method="post" action="controle">
                     <input type="hidden" name="acao" value="incluirVendedor" />
-                    <p><label>Nome de Usuário: </label><input type="text" name="usuario" required="true"></p>
-                    <p><label>Senha: </label><input type="password" name="senha" required="true"></p>
-                    <p><label>CNPJ: </label><input type="text" name="cnpj" required="true"></p>
-                    <p><label>Nome Fantasia: </label><input type="text" name="nome" required="true"></p>
-                    <p><label>Descrição: </label><input type="text" name="descricao" required="true"></p>
-                    <p><label>Telefone: </label><input type="text" name="telefone" required="true"></p>
-                    <p><label>Email: </label><input type="email" name="email" required="true"></p>
-                    <p><label>Endereço: </label><input type="text" name="endereco" required="true"></p>
+                    <p><label>Nome de Usuário: </label><input type="text" name="usuario" required="true" maxlength="50"></p>
+                    <p><label>Senha: </label><input type="password" name="senha" required="true" maxlength="50"></p>
+                    <p><label>CNPJ: </label><input type="text" name="cnpj" required="true" maxlength="18"></p>
+                    <p><label>Nome Fantasia: </label><input type="text" name="nome" required="true" maxlength="50"></p>
+                    <p><label>Descrição: </label><input type="text" name="descricao" required="true" maxlength="200"></p>
+                    <p><label>Telefone: </label><input type="text" name="telefone" required="true" maxlength="18"></p>
+                    <p><label>Email: </label><input type="email" name="email" required="true" maxlength="50"></p>
+                    <p><label>Endereço: </label><input type="text" name="endereco" required="true" maxlength="50"></p>
                     <p><input type="submit" value="incluir"></p>
                 </form>
             </div>

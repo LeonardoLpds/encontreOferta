@@ -20,7 +20,7 @@
             <hr>
             <form method="post" action="controle">
                 <input type="hidden" name="acao" value="incluirPromocao" />
-                <p><label>Titulo: <input type="text" name="titulo" required="true" ></label></p>
+                <p><label>Titulo: <input type="text" name="titulo" required="true" maxlength="50"></label></p>
                 <p><label>Descrição: <textarea name="descricao" maxlength="200" required="true" id="descricao"></textarea></label></p>
                 <p><label>Vendedor: 
                         <select name="cnpj">
@@ -30,7 +30,7 @@
                             <option value="<%= vendedor.getCnpj()%>"><%= vendedor.getNomeFantasia()%></option>
                         </select>
                     </label></p>
-                <p><label>Nome da imagem: <input type="text" name="imagem" required="true"></label></p>
+                    <p><label>Nome da imagem: <input type="text" name="imagem" required="true" maxlength="50"></label></p>
                 <p><label>Categoria: 
                         <select name="idCategoria">
                             <%

@@ -20,8 +20,8 @@
             <form method="post" action="controle">
                 <input type="hidden" name="acao" value="alterarCategoria" />
                 <input type="hidden" name="id" value="<%=categoria.getIdCategoria()%>" />
-                <p><label>nome: <input type="text" name="nome" value="<%= categoria.getNome()%>" required="true"></label></p>
-                <p><label>Descrição: <input type="text" name="descricao" value="<%= categoria.getDescricao()%>" required="true"></label></p>
+                <p><label>nome: <input type="text" name="nome" value="<%= categoria.getNome()%>" required="true" maxlength="50"></label></p>
+                <p><label>Descrição: <input type="text" name="descricao" value="<%= categoria.getDescricao()%>" required="true" maxlength="100"></label></p>
                 <p><input type="submit" value="Alterar"></p>
             </form>
         </div>

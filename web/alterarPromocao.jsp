@@ -24,8 +24,8 @@
             <form method="post" action="controle">
                 <input type="hidden" name="acao" value="alterarPromocao" />
                 <input type="hidden" name="id" value="<%= promocao.getIdPromocao()%>" />
-                <p><label>Titulo: <input type="text" name="titulo" value="<%= promocao.getTitulo()%>" required="true"></label></p>
-                <p><label>Descrição: <textarea name="descricao" required="true"><%= promocao.getDescricao()%></textarea></label></p>
+                <p><label>Titulo: <input type="text" name="titulo" value="<%= promocao.getTitulo()%>" required="true" maxlength="50"></label></p>
+                <p><label>Descrição: <textarea name="descricao" required="true" maxlength="200"><%= promocao.getDescricao()%></textarea></label></p>
                 <p><label>Vendedor: 
                         <select name="cnpj">
                             <%
@@ -34,7 +34,7 @@
                             <option value="<%= vendedor.getCnpj()%>"><%= vendedor.getNomeFantasia()%></option>
                         </select>
                     </label></p>
-                <p><label>Nome da imagem: <input type="text" name="imagem" value="<%= promocao.getImagem()%>" required="true"></label></p>
+                    <p><label>Nome da imagem: <input type="text" name="imagem" value="<%= promocao.getImagem()%>" required="true" maxlength="50"></label></p>
                 <p><label>Categoria: 
                         <select name="idCategoria">
                             <%
