@@ -20,6 +20,15 @@
         <!-- Lista todas as categorias -->
         <div class="boxBranco">
             <h2>Categorias:</h2>
+            <%
+                if (request.getAttribute("error") != null) {
+            %>
+            <div class="alertaErro">
+                <%= request.getAttribute("error")%>
+            </div>
+            <%
+                }
+            %>
             <hr>
             <table>
                 <thead>

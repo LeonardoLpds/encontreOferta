@@ -34,7 +34,7 @@ public class CategoriaService {
         return true;
     }
     
-    public void apagar(Categoria categoria){
-        dao.apagar(categoria);
+    public boolean apagar(Categoria categoria){
+        return dao.apagar(categoria);
     }
 }

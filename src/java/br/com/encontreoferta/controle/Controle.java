@@ -3,7 +3,6 @@ package br.com.encontreoferta.controle;
 import br.com.encontreoferta.Categoria;
 import br.com.encontreoferta.CategoriaService;
 import br.com.encontreoferta.Promocao;
-import br.com.encontreoferta.PromocaoDao;
 import br.com.encontreoferta.PromocaoService;
 import br.com.encontreoferta.Vendedor;
 import br.com.encontreoferta.VendedorService;
@@ -51,6 +50,8 @@ public class Controle extends HttpServlet {
         int id;
         String cnpj;
         BigDecimal valor;
+        boolean result;
+        String error = "";
         
         //Declarando objetos a serem manipulados
         Categoria categoria = new Categoria();
@@ -101,12 +102,12 @@ public class Controle extends HttpServlet {
                 vendedor.setEmail(request.getParameter("email"));
                 vendedor.setLogin(request.getParameter("usuario"));
                 vendedor.setSenha(request.getParameter("senha"));
-                boolean result = vendedorService.inserir(vendedor);
+                result = vendedorService.inserir(vendedor);
                 if(result){
                     rd = request.getRequestDispatcher("vendedores.jsp");
                     break;
                 }
-                String error = "Falha ao cadastrar, CNPJ ou Nome de usuário já estão em uso";
+                error = "Falha ao cadastrar, CNPJ ou Nome de usuário já estão em uso";
                 request.setAttribute("error", error);
                 rd = request.getRequestDispatcher("loginOuCadastro.jsp");
                 break;
@@ -216,12 +217,22 @@ public class Controle extends HttpServlet {
             case "excluirCategoria":
                 id = Integer.parseInt(request.getParameter("id"));
                 categoria = categoriaService.selecionarPorId(id);
-                categoriaService.apagar(categoria);
+                result = categoriaService.apagar(categoria);
+                if(!result){
+                    error = "exclua todos os produtos desta categoria antes de exclui-la";
+                }
+                request.setAttribute("error", error);
+                rd = request.getRequestDispatcher("categorias.jsp");
                 break;
             case "excluirPromocao":
                 id = Integer.parseInt(request.getParameter("id"));
                 promocao = promocaoService.selecionarPorId(id);
-                promocaoService.apagar(promocao);
+                result = promocaoService.apagar(promocao);
+                if(!result){
+                    error = "Essa promoção ainda possui vouchers a serem consumidos";
+                }
+                request.setAttribute("error", error);
+                rd = request.getRequestDispatcher("categorias.jsp");
                 break;
             case "excluirVendedor":
                 cnpj = request.getParameter("cnpj");
